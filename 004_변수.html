@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<style>
+  .list-group{
+    visibility:hidden;
+    transition: all 1s;
+    height:0;
+  }
+  .show{
+    visibility:visible;
+    height:100%;
+  }
+
+  /* modal */
+.black-bg {
+  width : 100%;
+  height : 100%;
+  position : fixed;
+  background : rgba(0,0,0,0.5);
+  z-index : 5;
+  padding: 30px;
+  visibility:hidden;
+  opacity:0;
+  transition: all 1s;
+}
+.white-bg {
+  background: white;
+  border-radius: 5px;
+  padding: 30px;
+} 
+.show-modal{
+  visibility:visible;
+  opacity:1;
+}
+
+.main-bg{
+  padding:100px 20px;
+  background:lightgrey;
+}
+
+</style>
+</head>
+<body>
+    <!-- modal -->
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <form action="success.html">
+          <div class="my-3">
+            <input type="text" class="form-control" id="email">
+           </div>
+           <div class="my-3">
+             <input type="password" class="form-control" id="pw">
+           </div>
+           <button type="submit" class="btn btn-primary">전송</button>
+           <button type="button" class="btn btn-danger" id="close">닫기</button>
+        </form> 
+      </div>
+    </div>
+  
+    <!-- nav menu -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand">JSSshop</span>
+      <span class="badge bg-dark">Dark 🔄</span>
+      <button class="navbar-toggler" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav> 
+  <script>
+    //Dark모드 1회(class= badge) 클릭시 내부 글자를 Light로 변경. 
+    //2회 클릭시 dark
+    //3회 클릭시 light
+    //4회 클릭시 dark 로 변경  ...규칙이 보인다.
+    //=>클릭 횟수가 홀수면 눌렀을때 글자를 light로 변경하자.
+    // => 클릭 횟수가 짝수면 눌렀을때 글자를 dark로 변경하자.
+    // 그런데. 몇번 클릭했는지 기록해야한다. 그래서 변수가 있어야해.
+    // 자료 잠깐 저장 하는 변수 문법, 
+
+    // const 변수이름 = 변수에 넣을 값;
+
+    //badge 클릭횟수, 버튼 클릭할때마다 1씩 증가시키는 걸 count 변수에 기록시켜보자.
+
+   
+    let count = 0;
+    document.querySelector('.badge').addEventListener('click',function(){
+    count = count+1;
+     if(count%2==1){
+      document.querySelector('.badge').innerHTML='light';
+    }else{
+      document.querySelector('.badge').innerHTML='dark';
+    }
+      
+    });
+
+
+
+
+    
+  </script>
+
+  <ul class="list-group">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">A fourth item</li>
+    <li class="list-group-item">And a fifth one</li>
+  </ul> 
+
+  <div class="main-bg">
+    <h4>Shirts on Sale</h4>
+    <button id="login" class="btn btn-danger">로그인</button>
+  </div>
+
+
+
+  <script>
+
+
+
+
+
+
+
+
+
+
+
+
+  // 로그인 버튼 클릭하면 모달창 띄워라. 근데 모달창은 form 을 곁들인 모달창
+  document.querySelector('#login').addEventListener('click',function(){
+    document.querySelector('.black-bg').classList.add('show-modal');
+  })
+//input 이벤트는 input에 입력한 값이 바뀔때 발생한다.
+document.getElementById('email').addEventListener('input', function(){
+  console.log('안녕')
+});
+//chnage 이벤트는 값이 변경되고 나서 커서를 다른데 찍어야 발동이되는 이벤트
+  // document.getElementById('email'),addEventListener('change',function(){
+  //   console.log('안녕');
+  // });
+
+
+  
+ </script>
+</body>
+</html>

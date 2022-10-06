@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<style>
+  .list-group{
+    visibility:hidden;
+    transition: all 1s;
+    height:0;
+  }
+  .show{
+    visibility:visible;
+    height:100%;
+  }
+
+  /* modal */
+.black-bg {
+  width : 100%;
+  height : 100%;
+  position : fixed;
+  background : rgba(0,0,0,0.5);
+  z-index : 5;
+  padding: 30px;
+  visibility:hidden;
+  opacity:0;
+  transition: all 1s;
+}
+.white-bg {
+  background: white;
+  border-radius: 5px;
+  padding: 30px;
+} 
+.show-modal{
+  visibility:visible;
+  opacity:1;
+}
+
+.main-bg{
+  padding:100px 20px;
+  background:lightgrey;
+}
+
+</style>
+</head>
+<body>
+    <!-- modal -->
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <form action="success.html">
+          <div class="my-3">
+            <input type="text" class="form-control" id="email">
+           </div>
+           <div class="my-3">
+             <input type="password" class="form-control" id="pw">
+           </div>
+           <button type="submit" class="btn btn-primary">전송</button>
+           <button type="button" class="btn btn-danger" id="close">닫기</button>
+        </form> 
+      </div>
+    </div>
+  
+    <!-- nav menu -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand">Navbar</span>
+      <button class="navbar-toggler" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav> 
+  <ul class="list-group">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">A fourth item</li>
+    <li class="list-group-item">And a fifth one</li>
+  </ul> 
+
+  <div class="main-bg">
+    <h4>Shirts on Sale</h4>
+    <button id="login" class="btn btn-danger">로그인</button>
+  </div>
+
+
+
+  <script>
+  // 로그인 버튼 클릭하면 모달창 띄워라. 근데 모달창은 form 을 곁들인 모달창
+  document.querySelector('#login').addEventListener('click',function(){
+    document.querySelector('.black-bg').classList.add('show-modal');
+  })
+
+  // 전송버튼 누르면 저기 input에 입력한 값이 공백이면, 알림창 띄워주세요
+  //form 태그 찾아서 form이 submit(전송)이 되면 이벤트 발생하게해줘
+  //form 전송 막으려면 function(e) 라고 쓰고 e.preventDefault();
+  // 자바스크립트로 input에 텍스트 입력값 가져오기는 document.getElementById('email').value
+  //참고자료 : https://ko.code-paper.com/javascript/examples-get-element-value-by-id
+
+  document.querySelector('form'),addEventListener('submit',function(e){
+    if(document.getElementById('email').value==''){
+      alert('아이디 입력안함');
+      e.preventDefault();
+    }
+  });
+
+
+  
+ </script>
+</body>
+</html>

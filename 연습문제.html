@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+  // 3의 배수는 박수, 그 외에는 통과
+  function 삼육구게임(입력된숫자){
+    if(입력된숫자%3===0){
+    console.log('박수');
+    }else{
+    console.log('통과');
+    }}
+
+  console.log(삼육구게임(3));
+  console.log(삼육구게임(4));
+  console.log(삼육구게임(12));
+
+  // 3의 배수는 박수 1번, 9의 배수는 박수 2번, 그 외에는 통과
+
+  console.log('--------------')
+
+  function 삼육구게임(입력된숫자){
+    if(입력된숫자%9===0){
+    console.log('박수박수');
+    }else if(입력된숫자%3===0){
+    console.log('박수')
+    }else{
+    console.log('통과');
+    }}
+
+  console.log(삼육구게임(3));
+  console.log(삼육구게임(9));
+  console.log(삼육구게임(18));
+  console.log(삼육구게임(13));
+
+
+
+    </script>
+</body>
+</html>

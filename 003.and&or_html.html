@@ -95,30 +95,16 @@
   document.querySelector('#login').addEventListener('click',function(){
     document.querySelector('.black-bg').classList.add('show-modal');
   })
+//input 이벤트는 input에 입력한 값이 바뀔때 발생한다.
+document.getElementById('email').addEventListener('input', function(){
+  console.log('안녕')
+});
+//chnage 이벤트는 값이 변경되고 나서 커서를 다른데 찍어야 발동이되는 이벤트
+  // document.getElementById('email'),addEventListener('change',function(){
+  //   console.log('안녕');
+  // });
 
-  // 전송버튼 누르면 저기 input에 입력한 값이 공백이면, 알림창 띄워주세요
-  //form 태그 찾아서 form이 submit(전송)이 되면 이벤트 발생하게해줘
-  //form 전송 막으려면 function(e) 라고 쓰고 e.preventDefault();
-  // 자바스크립트로 input에 텍스트 입력값 가져오기는 document.getElementById('email').value
-  //참고자료 : https://ko.code-paper.com/javascript/examples-get-element-value-by-id
 
-  document.querySelector('form'),addEventListener('submit',function(e){
-    if(document.getElementById('email').value==''){
-      alert('아이디 입력안함');
-      e.preventDefault();
-    }
-    if(document.getElementById('pw').value==''){
-      alert('비번 입력안함');
-      e.preventDefault();
-    }
-  });
-
-  document.querySelector('form'),addEventListener('submit',function(e){
-    if(document.getElementById('pw').value.length<6){
-      alert('6자 미만임')
-      e.preventDefault();
-    }
-  });
   
  </script>
 </body>
