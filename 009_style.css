@@ -1,0 +1,11 @@
+/* 300vw 를 하는 이유는, slide-box를 3개를 나란히 둬야하니까. 200vw로 하면 박스 1개가 밑으로가겠지*/
+.slide-container{
+  width:300vw;
+}
+.slide-box{
+  width:100vw;
+  float:left;
+}
+.slide-box img{
+  width:100%;
+}
