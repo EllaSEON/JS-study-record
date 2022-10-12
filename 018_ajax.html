@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="011_for.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100">
+          <h5>Card title</h5>
+          <p>가격 : 70000</p>
+        </div>
+    </div>
+  </div> 
+
+
+<script>
+  var products = [
+    { id : 0, price : 70000, title : 'Blossom Dress' },
+    { id : 1, price : 50000, title : 'Springfield Shirt' },
+    { id : 2, price : 60000, title : 'Black Monastery' }
+  ];
+
+</script> 
+
+<script>
+//제이쿼리로 ajax 가져오기
+// $.get('https://codingapple1.github.io/price.json').done(function(data){
+//   console.log(data.price)
+// }).fail(function(){
+//   console.log('실패함')
+// })
+
+//바닐라자바스크립트로 ajax 가져오기 (화살표함수 연습)
+
+fetch('https://codingapple1.github.io/price.json')
+.then((response)=>{
+  return response.json()
+})
+.then((data)=>{
+  console.log(data);
+}).catch(()=>{
+  console.log("에러남")
+})
+
+//바닐라 자바스크립트로 ajax 가져오기 (화살표함수 연습)
+
+fetch('https://codingapple1.github.io/price.json')
+.then(response=>response.json())
+.then(data=>console.log(data));
+
+//바닐라 자바스크립트로 ajax 가져오기 (화살표함수 연습)
+fetch('https://codingapple1.github.io/price.json')
+.then((response)=>{return response.json()})
+.then((data)=>{console.log(data)})
+
+//바닐라 자바스크립트로 ajax 가져오기 (화살표함수 연습)
+fetch('https://codingapple1.github.io/price.json')
+.then(res=>res.json())
+.then(data=>console.log(data));
+
+
+</script>
+
+</body>
+</html>

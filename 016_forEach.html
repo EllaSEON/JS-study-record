@@ -60,33 +60,55 @@
 //Quiz1) pants 데이터 갯수만큼 <option>생성해주세요 => 반복문을 쓰자.
 //Quiz2) 셔츠 선택시 array 갯수에 맞게 <option>생성하려면?
 
+  // let pants = [28,30,32,34];
+
+  // let shirts=[95,100,105,110];
+
+  // let 첫번째박스 = document.querySelectorAll('.form-select')[0];
+
+  // document.querySelectorAll('.form-select')[0].addEventListener('input',function(){
+  //   if(첫번째박스.value=='셔츠'){
+  //     document.querySelectorAll('.form-select')[1].classList.remove('form-hide');
+  //     shirts.forEach(function(data){
+  //       document.querySelectorAll('.form-select')[1].insertAdjacentHTML("beforeend",`<option>${data}</option>`);
+  //     })
+  //   }else if(첫번째박스.value=='모자'){
+  //     document.querySelectorAll('.form-select')[1].classList.add('form-hide');
+  //   }else if(첫번째박스.value=='바지'){
+  //     document.querySelectorAll('.form-select')[1].classList.remove('form-hide');
+  //     document.querySelectorAll('.form-select')[1].innerHTML='';
+  //     pants.forEach(function(data){
+  //       document.querySelectorAll('.form-select')[1].insertAdjacentHTML("beforeend",`<option>${data}</option>`);
+  //   });
+  //   }
+  // })
+
+  
+  //화살표함수로 다 바꿔보기
   let pants = [28,30,32,34];
 
   let shirts=[95,100,105,110];
 
   let 첫번째박스 = document.querySelectorAll('.form-select')[0];
 
-  document.querySelectorAll('.form-select')[0].addEventListener('input',function(){
+  document.querySelectorAll('.form-select')[0].addEventListener('input',()=>{
     if(첫번째박스.value=='셔츠'){
       document.querySelectorAll('.form-select')[1].classList.remove('form-hide');
-      let 셔츠사이즈 = `<option>95</option><option>100</option>`;
-      document.querySelectorAll('.form-select')[1].innerHTML=셔츠사이즈;
+      shirts.forEach((data)=>{
+        document.querySelectorAll('.form-select')[1].insertAdjacentHTML("beforeend",`<option>${data}</option>`);
+      })
     }else if(첫번째박스.value=='모자'){
       document.querySelectorAll('.form-select')[1].classList.add('form-hide');
     }else if(첫번째박스.value=='바지'){
       document.querySelectorAll('.form-select')[1].classList.remove('form-hide');
       document.querySelectorAll('.form-select')[1].innerHTML='';
-      pants.forEach(function(data){
+      pants.forEach((data)=>{
         document.querySelectorAll('.form-select')[1].insertAdjacentHTML("beforeend",`<option>${data}</option>`);
     });
     }
   })
 
-  let 객체 = {name:'kim',age:20,boolean:true}
 
-  for(let key in 객체){
-    console.log(key);
-  }
 
   </script>
 
