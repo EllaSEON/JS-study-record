@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="011_for.css">
+
+<style>
+  .form-hide{
+    display:none;
+  }
+</style>
+</head>
+<body>
+   <!-- 셔츠 고르면 <select> 하나 더 보여주기
+    만드는 방법 : 1) html,css 미리 만들고 평소엔 숨겼다가 필요하면 보여주기 -->
+  <form class="container my-5 form-group">
+    <p>상품선택</p>
+    <select class="form-select mt-2">
+      <option>모자</option>
+      <option>셔츠</option>
+      <option>바지</option>
+    </select>
+    <select class="form-select mt-2 form-hide">
+      <!-- <option>95</option>
+      <option>100</option> -->
+    </select>
+  </form>
+  <script>
+
+//셔츠를 클릭하면, 사이즈 옵션창 보여줘 그리고 바지를 클릭하면 사이즈를 28,30으로 바꿔줘
+
+// let 첫번째박스 = document.querySelectorAll('.form-select')[0];
+
+//   document.querySelectorAll('.form-select')[0].addEventListener('input',function(){
+//     if(첫번째박스.value=='셔츠'){
+//       document.querySelectorAll('.form-select')[1].classList.remove('form-hide');
+//       let 셔츠사이즈 = `<option>95</option><option>100</option>`;
+//       document.querySelectorAll('.form-select')[1].innerHTML=셔츠사이즈;
+//     }else if(첫번째박스.value=='모자'){
+//       document.querySelectorAll('.form-select')[1].classList.add('form-hide');
+//     }else if(첫번째박스.value=='바지'){
+//       document.querySelectorAll('.form-select')[1].classList.remove('form-hide');
+//       let 바지사이즈 = `<option>28</option><option>30</option>`;
+//       document.querySelectorAll('.form-select')[1].innerHTML=바지사이즈;
+//     }
+//   })
+
+
+//그런데 매일매일 사이즈가 달라지면??
+//option 태그를 또 매일매일 추가해서 하드코딩 할순 없잖아.
+//서버에서 데이터 가져와서 그거 갯수만큼 <option> 만들면 될듯
+//아직 서버와 통신하는 법을 모르니 데이터를 array로 만들어놓자
+
+//Quiz1) pants 데이터 갯수만큼 <option>생성해주세요 => 반복문을 쓰자.
+//Quiz2) 셔츠 선택시 array 갯수에 맞게 <option>생성하려면?
+
+  let pants = [28,30,32,34];
+
+  let shirts=[95,100,105,110];
+
+  let 첫번째박스 = document.querySelectorAll('.form-select')[0];
+
+  document.querySelectorAll('.form-select')[0].addEventListener('input',function(){
+    if(첫번째박스.value=='셔츠'){
+      document.querySelectorAll('.form-select')[1].classList.remove('form-hide');
+      let 셔츠사이즈 = `<option>95</option><option>100</option>`;
+      document.querySelectorAll('.form-select')[1].innerHTML=셔츠사이즈;
+    }else if(첫번째박스.value=='모자'){
+      document.querySelectorAll('.form-select')[1].classList.add('form-hide');
+    }else if(첫번째박스.value=='바지'){
+      document.querySelectorAll('.form-select')[1].classList.remove('form-hide');
+      document.querySelectorAll('.form-select')[1].innerHTML='';
+      pants.forEach(function(data){
+        document.querySelectorAll('.form-select')[1].insertAdjacentHTML("beforeend",`<option>${data}</option>`);
+    });
+    }
+  })
+
+  let 객체 = {name:'kim',age:20,boolean:true}
+
+  for(let key in 객체){
+    console.log(key);
+  }
+
+  </script>
+
+
+</body>
+</html>

@@ -11,7 +11,55 @@
 <link rel="stylesheet" href="011_for.css">
 </head>
 <body>
-    <!-- 탭만들기 -->
+  <div class="container mt-3">
+    <div class="card p-3">
+      <span class="car-title">상품명</span>
+      <span class="car-price">가격</span>
+    </div>
+  </div>
+
+<!-- <script>
+  // car2 object 자료형을 html 태그에 넣어보기
+  let car2 = {name:'소나타',price:50000}
+
+  document.querySelector('.car-title').innerHTML=car2['name'];
+  document.querySelector('.car-price').innerHTML=car2.price;
+</script> -->
+
+
+<script>
+// 데이터바인딩(html 에 데이터 꽂기)
+//client-side rendering : 서버가 비어있는 html 과 데이터만 보내주고 자스 이용해서 고객 브라우저 안에서 html을 완성
+  let car2 ={name:'소나타',price:[50000,3000,4000]}
+  
+  document.querySelector('.car-price').innerHTML=car2['price'][0];
+  console.log(car2.price[0]);
+</script>
+
+  <!-- <script>
+    //array:변수 하나에 여러자료 저장가능, 아무 자료나 넣을수있음
+    let car =['소나타',50000,'white'];
+    console.log(car[0])
+    car[0]='아반떼'
+    //순서 개념이 있어서 정렬도 되고, 중간에 자르기도 됨 
+    //sort() : 정렬하는 방법 (숫자-영어-한글 순서)
+    car.sort();
+    console.log(car);
+    //slice: 중간에 잘라주는거. 1번째부터 3번째 전까지
+    car.slice(1,3)
+    console.log(car);
+    // object
+    let car2 = {name:'소나타',price:50000};
+    //object 자료 꺼내는 법
+    console.log(car2['name'])
+    console.log(car2.price)
+    console.log(car2['price'])
+    //object 자료 수정하는 법
+    car2.price=60000;
+    console.log(car2.price);
+  </script> -->
+  
+  <!-- 탭만들기 -->
     <div class="container mt-5">
       <ul class="list">
         <li class="tab-button">Products</li>
