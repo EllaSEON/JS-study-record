@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="011_for.css">
+<style>
+  .form-hide{
+    display:none;
+  }
+</style>
+</head>
+<body>
+  <form class="container my-5 form-group">
+    <p>상품선택</p>
+    <select class="form-select mt-2">
+      <option>모자</option>
+      <option>셔츠</option>
+      <option>바지</option>
+    </select>
+    <select class="form-select mt-2 form-hide">
+    </select>
+</form>
+
+<script>
+
+//셔츠 고르면 사이즈 옵션창 보여주기
+let pants =[28,30,32,34];
+let shirts=[95,100,105];
+
+ document.querySelectorAll('.form-select')[0].addEventListener('input',(e)=>{
+  const formSelect = document.querySelectorAll('.form-select')[1];
+  const 선택한값 = e.currentTarget.value;
+  if (선택한값 == '셔츠') {
+   formSelect.classList.remove('form-hide');
+   document.querySelectorAll('.form-select')[1].innerHTML="";
+   shirts.forEach((data)=>{
+    let 셔츠옵션 = `<option>${data}</option>`
+    formSelect.insertAdjacentHTML('beforeend',셔츠옵션)
+   })
+  }else if (선택한값 == '모자') {
+    formSelect.classList.add('form-hide');
+  }else if (선택한값=='바지'){
+    formSelect.classList.remove('form-hide');
+    document.querySelectorAll('.form-select')[1].innerHTML="";
+    pants.forEach((data)=>{
+    let 바지옵션 = `<option>${data}</option>`;
+      formSelect.insertAdjacentHTML('beforeend',바지옵션);
+    })
+  }
+ })
+
+ var obj = {name:'kim',age:20}
+
+ for(var key in obj){
+  console.log(obj[key]);
+  console.log(key);
+ }
+</script> 
+
+
+</body>
+</html>

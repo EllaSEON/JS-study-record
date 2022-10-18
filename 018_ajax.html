@@ -13,14 +13,13 @@
 <body>
   <div class="container">
     <div class="row">
-        <div class="col-sm-4">
+        <!-- <div class="col-sm-4">
           <img src="https://via.placeholder.com/600" class="w-100">
           <h5>Card title</h5>
           <p>가격 : 70000</p>
-        </div>
+        </div> -->
     </div>
   </div> 
-
 
 <script>
   var products = [
@@ -29,46 +28,163 @@
     { id : 2, price : 60000, title : 'Black Monastery' }
   ];
 
+  //1. html 로 카드 3개 만들기
+ // 2. 한번에 어떻게 3개나 만들지? X
+ // 3. 1개만 만들어보자 O
+ // 4. 3개 다 만들고 반복하기 싫으면 반복문으로 축약하자
+
+    // let 카드 = `<div class="col-sm-4">
+    //   <img src="https://via.placeholder.com/600" class="w-100">
+    //   <h5>${products[0].title}</h5>
+    //   <p>가격 :${products[0].price}</p>
+    //   </div>`
+    // document.querySelector('.row').insertAdjacentHTML("beforeend",카드)
+
+    // let 카드1 = `<div class="col-sm-4">
+    //   <img src="https://via.placeholder.com/600" class="w-100">
+    //   <h5>${products[1].title}</h5>
+    //   <p>가격 :${products[1].price}</p>
+    //   </div>`
+    // document.querySelector('.row').insertAdjacentHTML("beforeend",카드1)
+   
+    // let 카드2 = `<div class="col-sm-4">
+    //   <img src="https://via.placeholder.com/600" class="w-100">
+    //   <h5>${products[2].title}</h5>
+    //   <p>가격 :${products[2].price}</p>
+    //   </div>`
+    // document.querySelector('.row').insertAdjacentHTML("beforeend",카드2)
+
+
+//5. 반복문 완성본 
+// 첫번째 예시
+
+  // products.forEach((data)=>{
+  //   let 카드 = 
+  //   `<div class="col-sm-4"><img src="https://via.placeholder.com/600" class="w-100"><h5>${data.title}</h5><p>가격 : ${data.price}</p></div>`
+  //   document.querySelector('.row').insertAdjacentHTML("beforeend",카드);
+  // })
+ 
+//두번째 예시
+products.forEach((data,i)=>{
+    let 카드 = 
+    `<div class="col-sm-4"><img src="https://via.placeholder.com/600" class="w-100"><h5>${products[i].title}</h5><p>가격 : ${products[i].price}</p></div>`
+    document.querySelector('.row').insertAdjacentHTML("beforeend",카드);
+  })
 </script> 
 
+<!-- 상품더보기 버튼 -->
+<div class="container">
+  <button class="btn btn-danger">더보기</button>
+</div>
+
+<!-- 더보기 버튼 누르면 상품 3개 가져와서 출력하기 -->
 <script>
-//제이쿼리로 ajax 가져오기
-// $.get('https://codingapple1.github.io/price.json').done(function(data){
-//   console.log(data.price)
-// }).fail(function(){
-//   console.log('실패함')
+
+  //1) 바닐라 자바스크립트
+//  document.querySelector('.btn').addEventListener('click',()=>{
+//   fetch('https://codingapple1.github.io/js/more1.json')
+//   .then(res=>res.json())
+//   .then(data=>{
+//     data.forEach((a,i)=>{
+//       let 더보기상품 = `<div class="col-sm-4"><img src="https://via.placeholder.com/600" class="w-100"><h5>${data[i].title}</h5><p>가격 : ${data[i].price}</p></div>`
+//     document.querySelector('.row').insertAdjacentHTML('beforeend',더보기상품);
+//     })
+//   })
+//  })
+
+//2)제이쿼리
+// $('.btn').click(function(){
+//   $.get('https://codingapple1.github.io/js/more1.json')
+//   .done((data)=>{
+//     console.log(data);
+//   })
 // })
 
-//바닐라자바스크립트로 ajax 가져오기 (화살표함수 연습)
 
-fetch('https://codingapple1.github.io/price.json')
-.then((response)=>{
-  return response.json()
+//더보기 2회 누르면 7,8,9번째 상품 더 가져오기. 3번 누르면 더보기 버튼 안보이게 하기
+
+// let count = 0;
+// document.querySelector('.btn').addEventListener('click',()=>{
+//   count +=1;
+//   if(count===1){
+//     fetch('https://codingapple1.github.io/js/more1.json')
+//     .then(res=>res.json())
+//     .then(data=>{
+//      data.forEach((a,i)=>{
+//       let 첫번째카드목록 =
+//         `<div class="col-sm-4">
+//           <img src="https://via.placeholder.com/600" class="w-100">
+//           <h5>${data[i].title}</h5>
+//           <p>가격 : ${data[i].price}</p>
+//         </div>`
+//       document.querySelector('.row').insertAdjacentHTML('beforeend',첫번째카드목록)
+//      })
+//     })
+//   }else if(count===2){
+//     fetch('https://codingapple1.github.io/js/more2.json')
+//     .then(res=>res.json())
+//     .then(data=>{
+//      data.forEach((a,i)=>{
+//       let 두번째카드목록 =
+//         `<div class="col-sm-4">
+//           <img src="https://via.placeholder.com/600" class="w-100">
+//           <h5>${data[i].title}</h5>
+//           <p>가격 : ${data[i].price}</p>
+//         </div>`
+//       document.querySelector('.row').insertAdjacentHTML('beforeend',두번째카드목록)
+//      })
+//     })
+//   }else{
+//     document.querySelector('.btn').style.display='none';
+//   }
+// })
+
+ //마지막 과제 : 중복된 코드는 함수로 만들어놓고 써보기
+ // 함수화할때는 변수 있으면 파라미터로 바꾸는게 좋다.
+
+
+
+
+let count = 0;
+document.querySelector('.btn').addEventListener('click',()=>{
+  count +=1;
+  if(count===1){
+    fetch('https://codingapple1.github.io/js/more1.json')
+    .then(res=>res.json())
+    .then(data=>{
+      data.forEach((a,i)=>{
+      let 첫번째카드목록 =
+        `<div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100">
+          <h5>${data[i].title}</h5>
+          <p>가격 : ${data[i].price}</p>
+        </div>`
+      document.querySelector('.row').insertAdjacentHTML('beforeend',첫번째카드목록)
+  })
+    })
+  }else if(count===2){
+    fetch('https://codingapple1.github.io/js/more2.json')
+    .then(res=>res.json())
+    .then(data=>{
+     data.forEach((a,i)=>{
+      let 첫번째카드목록 =
+        `<div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100">
+          <h5>${data[i].title}</h5>
+          <p>가격 : ${data[i].price}</p>
+        </div>`
+      document.querySelector('.row').insertAdjacentHTML('beforeend',첫번째카드목록)
+     })
+    })
+  }else{
+    document.querySelector('.btn').style.display='none';
+  }
 })
-.then((data)=>{
-  console.log(data);
-}).catch(()=>{
-  console.log("에러남")
-})
 
-//바닐라 자바스크립트로 ajax 가져오기 (화살표함수 연습)
-
-fetch('https://codingapple1.github.io/price.json')
-.then(response=>response.json())
-.then(data=>console.log(data));
-
-//바닐라 자바스크립트로 ajax 가져오기 (화살표함수 연습)
-fetch('https://codingapple1.github.io/price.json')
-.then((response)=>{return response.json()})
-.then((data)=>{console.log(data)})
-
-//바닐라 자바스크립트로 ajax 가져오기 (화살표함수 연습)
-fetch('https://codingapple1.github.io/price.json')
-.then(res=>res.json())
-.then(data=>console.log(data));
 
 
 </script>
+
 
 </body>
 </html>
