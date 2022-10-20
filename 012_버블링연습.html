@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트버블링</title>
+    <style>
+      body{
+        width:100%;
+        height:100vh;
+      }
+      div{
+        background:hotpink;
+      }
+    </style>
+</head>
+<body>
+    <div>클릭</div> 
+  <script>
+  //김버그 : https://www.youtube.com/watch?v=7gKtNC3b_S8
+  //짐코딩 : https://www.youtube.com/watch?v=0jtalJxrxhs
+  //기본 디폴트값은 false로 들어감. 즉, 버블링이 디폴트 값이다. 즉, addEventlistner를 쓰면 버블때 실행이 되겠다. 캡처링 (HTML->BODY->DIV) , 버블링 (DIV->BODY->HTML)
+
+  //true를 줘버리면 캡처일때 실행이 될거야 라는 뜻
+  //body에 캡처를 줘버리니까, 캡처일때 실행되니까 제일 먼저 실행되겠지 그래서 BODY->DIV->HTML 순서로 됨
+  //엔간하면 버블이다.
+  //div 태그 이벤트핸들러를 주석처리하고 html, body요소만 실행시켜보자. 그런데 div태그를 클릭해도 실행이된다. 왜...?이벤트 버블링때문에
+  //부모요소에 이벤트를 주면 자식요소도 같이 해당이됨
+
+    const html = document.documentElement;
+    const body=document.body
+    const div = document.querySelector('div')
+
+
+    div.addEventListener('click',function(){
+      console.log('DIV');
+    })
+
+    body.addEventListener('click',function(){
+      console.log('BODY');
+    },true) //true 를 붙이면 캡처링일떄 실행시켜줘이니까 가장 먼저 실행이됨
+
+    html.addEventListener('click',()=>{
+      console.log('HTML');
+    })
+    
+
+  </script>
+</body>
+</html>

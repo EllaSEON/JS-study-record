@@ -9,189 +9,293 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="011_for.css">
+<style>
+  .navbar {
+  position : fixed;
+  width : 100%;
+  z-index : 5
+}
+.navbar-brand {
+  font-size : 30px;
+  transition : all 1s;
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
+  <!DOCTYPE html>
+  <html lang="ko">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title></title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="009_style.css">
+  <link rel="stylesheet" href="010_스크롤이벤트.css">
+  <style>
+    :root{
+      scroll-behavior: auto;
+    }
+    .list-group{
+      visibility:hidden;
+      transition: all 1s;
+      height:0;
+    }
+    .show{
+      visibility:visible;
+      height:100%;
+    }
+  
+    /* modal */
+  .black-bg {
+    width : 100%;
+    height : 100%;
+    position : fixed;
+    background : rgba(0,0,0,0.5);
+    z-index : 5;
+    padding: 30px;
+    visibility:hidden;
+    opacity:0;
+    transition: all 1s;
+  }
+  .white-bg {
+    background: white;
+    border-radius: 5px;
+    padding: 30px;
+  } 
+  .show-modal{
+    visibility:visible;
+    opacity:1;
+  }
+  
+  .main-bg{
+    padding:100px 20px;
+    background:lightgrey;
+  }
+  
+  </style>
+  </head>
+  <body>
+      <!-- modal -->
+      <div class="black-bg">
+        <div class="white-bg">
+          <h4>로그인하세요</h4>
+          <form action="success.html">
+            <div class="my-3">
+              <input type="text" class="form-control" id="email">
+             </div>
+             <div class="my-3">
+               <input type="password" class="form-control" id="pw">
+             </div>
+             <button type="submit" class="btn btn-primary">전송</button>
+             <button type="button" class="btn btn-danger" id="close">닫기</button>
+          </form> 
+        </div>
+      </div>
+    <!-- 이메일 정규식 확인하는 JS -->
+    <script>
+      document.querySelector('form').addEventListener('submit',function(e){ e.preventDefault();
+        let 입력한id값=document.getElementById('email').value;
+        let 입력한pw값=document.getElementById('pw').value;
+  
+        if(입력한id값==''){
+          alert('아이디입력안함');
+        }
+        if(/\S+@\S+\.\S+/.test(입력한id값)==false){
+          alert('이메일형식 아님');
+        }
+        if(/[A-Z]/.test(입력한pw값)==false){
+          alert('비번에 대문자 없음');
+        }
+      })
+    </script>
+    
+      <!-- nav menu -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand">JSSshop</span>
+        <span class="badge bg-dark">Dark 🔄</span>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav> 
+    <script>
+      //클릭하면 light 모드, 다시 클릭하면 dark모드
+      let count = 0;
+      document.querySelector('.badge').addEventListener('click',function(){
+      count = count+1;
+       if(count%2==1){
+        document.querySelector('.badge').innerHTML='light';
+      }else{
+        document.querySelector('.badge').innerHTML='dark';
+      }
+        
+      });   
+  
+    </script>
+  
+  <!-- 스크롤바 내리면 로고 작게 만들기 -->
+  <!-- 스크롤 만들기위해서 height:1000px 만듦 -->
+  <div style="height:1000px;"></div>
+  
+  <script>
+  //유저가 스크롤바를 얼만큼 내렸는지 파악하고 싶을때 scroll 이벤트리스너
+  //스크롤바 100px 이상 내리면 로고 폰트사이즈 줄이기
+  
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>=100){
+      document.querySelector('.navbar-brand').style.fontSize = '20px';
+    }else{
+      document.querySelector('.navbar-brand').style.fontSize = '30px';
+    }
+  });
+  
+  </script>
+  
+  <!-- nav list -->
+    <ul class="list-group">
+      <li class="list-group-item">An item</li>
+      <li class="list-group-item">A second item</li>
+      <li class="list-group-item">A third item</li>
+      <li class="list-group-item">A fourth item</li>
+      <li class="list-group-item">And a fifth one</li>
+    </ul> 
+  
+    <div class="main-bg">
+      <h4>Shirts on Sale</h4>
+      <button id="login" class="btn btn-danger">로그인</button>
     </div>
-  </div> 
-  <div class="container">
-    <button class="btn btn-danger">
-      더보기
-    </button>
-  </div>
-
-  <div class="container my-3">
-    <button class="btn btn-danger" id="price">
-      가격순정렬
-    </button>
+  
+  <!-- 로그인 모달창 보여주는 것 -->
+    <script>
+      document.querySelector('#login').addEventListener('click',function(){
+        document.querySelector('.black-bg').classList.add('show-modal');
+      })
+     </script>
+  
+  <!-- 밑에 내용을 회원약관이라고 해보자. 이 회원 약관을 다 읽었을때, 즉 스크롤바 다 내렸을때 다 읽었다는 알림창을 표시해보자 -->
+  <div class="회원약관" style="width:200px; height:100px; overflow-y:scroll">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit temporibus earum fuga, minus cumque tempore nulla odio deleniti doloremque, voluptatem assumenda suscipit maxime quibusdam corporis, nisi at quasi vel laborum.</div>
+  
+  <script>
+  //박스의 스크롤바 끝까지 내리면 alert() 띄우기
+  //div의 스크롤바 내린 양 + 눈에 보이는 div높이 == div의 실제 높이
+  
+  document.querySelector('.회원약관').addEventListener('scroll',function(){
+    let 스크롤양 = document.querySelector('.회원약관').scrollTop;
+    let 실제높이 = document.querySelector('.회원약관').scrollHeight;
+    let 높이 = document.querySelector('.회원약관').clientHeight;
+    if(스크롤양+높이 > 실제높이-10){
+      alert('다읽음')
+    }
+  
+  })
+  
+  
+  </script>
+  
+  
+  <!-- 2번 버튼 누르면 이미지가 슬라이드 돼서 바뀜-->
+  <div style="overflow:hidden">
+    <div class="slide-container">
+      <div class="slide-box">
+        <img src="/img/car1.png" alt="">
+      </div>
+      <div class="slide-box">
+        <img src="/img/car2.png" alt="">
+      </div>
+      <div class="slide-box">
+        <img src="/img/car3.png" alt="">
+      </div>
+    </div>
   </div>
   
-  <div class="container my-3">
-    <button class="btn btn-danger" id="nameList">
-      상품명으로 정렬
-    </button>
-  </div>
-  <div class="container my-3">
-    <button class="btn btn-danger" id="under60000">
-      6만원 이하 상품만 보기
-    </button>
-  </div>
-
+  <button class="slide-1">1</button>
+  <button class="slide-2">2</button>
+  <button class="slide-3">3</button>
+  <button class="next">다음</button>
+  <button class="before">이전</button>
+  
+  <script>
+  
+  //1번 버튼
+    document.querySelector('.slide-1').addEventListener('click',function(){
+      document.querySelector('.slide-container').style.transform='translateX(0vw)';
+      document.querySelector('.slide-container').style.transition='all 2s';
+    })
+  
+    // 2번버튼
+    document.querySelector('.slide-2').addEventListener('click',function(){
+      document.querySelector('.slide-container').style.transform='translateX(-100vw)';
+      document.querySelector('.slide-container').style.transition='all 2s';
+    });
+  
+    //3번버튼
+    document.querySelector('.slide-3').addEventListener('click',function(){
+      document.querySelector('.slide-container').style.transform='translateX(-200vw)';
+      document.querySelector('.slide-container').style.transition='all 2s';
+    })
+    
+    // 다음버튼 누르면
+    //지금 보이는 사진이 1이면 2번 사진 보여주삼
+    //지금 보이는 사진이 2이면 3번 사진 보여주삼
+    // document.querySelector('.next').addEventListener('click',function(){
+    //   if(지금보이는 사진이 1이면){
+    //     2번 사진 보여주세요
+    //   }
+    // })
+  
+    let 지금사진 = 1;
+    
+    document.querySelector('.next').addEventListener('click',function(){
+      if(지금사진===1){
+        document.querySelector('.slide-container').style.transform='translateX(-100vw)';
+        document.querySelector('.slide-container').style.transition='all 2s';
+        지금사진+=1;
+       }else if(지금사진===2){
+          document.querySelector('.slide-container').style.transform='translateX(-200vw)';
+          document.querySelector('.slide-container').style.transition='all 2s';
+          지금사진+=1;
+        }
+    });
+    
+    //이전버튼
+    //지금 사진이 3이 보이면 2를 보여주삼
+    //지금 사진이 2가 보이면 1을 보여주삼
+  
+    
+    document.querySelector('.before').addEventListener('click',function(){
+      if(지금사진===3){
+        document.querySelector('.slide-container').style.transform='translateX(-100vw)';
+        document.querySelector('.slide-container').style.transition='all 2s';
+        지금사진-=1;
+       }else if(지금사진===2){
+          document.querySelector('.slide-container').style.transform='translateX(0vw)';
+          document.querySelector('.slide-container').style.transition='all 2s';
+          지금사진-=1;
+        }
+    });
+  
+    //사진이 갑자기 4개 되어도 잘되는 확장성 좋은 버튼 만들기
+    //사진 갯수와 상관없이 잘 동작하는 코드로 만들기
+  
+    // let 지금사진 = 1;
+    
+    // document.querySelector('.next').addEventListener('click',function(){
+    //     document.querySelector('.slide-container').style.transform='translateX(-' + 지금사진 + '00vw)';
+    //     document.querySelector('.slide-container').style.transition='all 2s';
+    //     지금사진+=1;
+    // });
+  
+  </script>
+  
+  </body>
+  </html>
 
 <script>
-  var products = [
-    { id : 0, price : 70000, title : 'Blossom Dress' },
-    { id : 1, price : 50000, title : 'Springfield Shirt' },
-    { id : 2, price : 60000, title : 'Black Monastery' }
-  ];
 
-//버튼 누르면 products 안의 데이터를 가격순으로 정렬하기
-const row = document.querySelector('.row');
-function 초기화(){
-  row.innerHTML="";
-}
-
-document.querySelector('#price').addEventListener('click',()=>{
-  products.sort(function(a,b){
-    return  a.price-b.price
-  })
-  초기화();
-  products.forEach((data,i)=>{
-  let 카드 =`<div class="col-sm-4">
-        <img src="https://via.placeholder.com/600" class="w-100">
-        <h5>${data.title}</h5>
-        <p>가격 : ${data.price}</p>
-      </div>`;
-  document.querySelector('.row').insertAdjacentHTML('beforeend',카드);
-})
-})
-
-//상품명 다나가순 정렬버튼과 기능
-
-const 상품명정렬버튼 = document.querySelector('#nameList')
-
-상품명정렬버튼.addEventListener('click',()=>{
-  products.sort((a,b)=>{
-    if(a.title>b.title){
-      return -1
-    }else if(a.title<b.title){
-      return 1
-    }else{
-      return 0;
-    }
-  })
-  초기화();
-  products.forEach((data,i)=>{
-    let 카드 =`<div class="col-sm-4">
-        <img src="https://via.placeholder.com/600" class="w-100">
-        <h5>${data.title}</h5>
-        <p>가격 : ${data.price}</p>
-      </div>`;
-    document.querySelector('.row').insertAdjacentHTML('beforeend',카드);
-  })
-})
-
-//6만원 이하 상품만 보기 버튼과 기능
-const 상품6만원정렬 = document.querySelector('#under60000');
-
-상품6만원정렬.addEventListener('click',()=>{
-  const newProducts = products.filter((a)=>{return a.price<60000})
-  초기화();
-  newProducts.forEach((data,i)=>{
-    let 카드 =`<div class="col-sm-4">
-        <img src="https://via.placeholder.com/600" class="w-100">
-        <h5>${data.title}</h5>
-        <p>가격 : ${data.price}</p>
-      </div>`;
-    document.querySelector('.row').insertAdjacentHTML('beforeend',카드);
-  })
-})
-
-
-
-//카드 레이아웃 3개 생성, products 에 있던 데이터 html 에 꽂혀있어야함.
-
-// products.forEach((data,i)=>{
-//   let 카드 =`<div class="col-sm-4">
-//         <img src="https://via.placeholder.com/600" class="w-100">
-//         <h5>${data.title}</h5>
-//         <p>가격 : ${data.price}</p>
-//       </div>`;
-//   document.querySelector('.row').insertAdjacentHTML('beforeend',카드);
-// })
-
-//상품 더보기 버튼 누르면 상품 3개 가져오기
-
-// document.querySelector('.btn').addEventListener('click',()=>{
-//   fetch('https://codingapple1.github.io/js/more1.json')
-//   .then(res=>res.json())
-//   .then((goods)=>{
-//     goods.forEach((data)=>{
-//       let 카드2 = `<div class="col-sm-4">
-//         <img src="https://via.placeholder.com/600" class="w-100">
-//         <h5>${data.title}</h5>
-//         <p>가격 : ${data.price}</p>
-//       </div>`;
-//       document.querySelector('.row').insertAdjacentHTML('beforeend',카드2)
-//     })
-//   })
-// })
-
-//더보기 버튼을 2번 누르면 7,8,9번째 상품을 더 가져와서 html 로 보여줘라
-
-// let count = 0;
-
-// if(더보기버튼을 1번 누르면){
-//   4,5,6 사진 보여주고
-// }else if(더보기 버튼을 2번 누르면){
-//   7,8,9 사진 보여주삼
-// }
-
-
-// document.querySelector('.btn').addEventListener('click',()=>{
-//   count += 1;
-//   // console.log(count)
-//   if(count===1){
-//     fetch('https://codingapple1.github.io/js/more1.json')
-//     .then(res=>res.json())
-//     .then((goods)=>{
-//       카드오픈();
-//       goods.forEach((data)=>{
-//         let 카드2 = `<div class="col-sm-4">
-//           <img src="https://via.placeholder.com/600" class="w-100">
-//           <h5>${data.title}</h5>
-//           <p>가격 : ${data.price}</p>
-//         </div>`;
-//         document.querySelector('.row').insertAdjacentHTML('beforeend',카드2)
-//       })
-//     }) 
-//   }else if(count===2){
-//     fetch('https://codingapple1.github.io/js/more2.json')
-//     .then(res=>res.json())
-//     .then((goods)=>{
-//       goods.forEach((data)=>{
-//         let 카드2 = `<div class="col-sm-4">
-//           <img src="https://via.placeholder.com/600" class="w-100">
-//           <h5>${data.title}</h5>
-//           <p>가격 : ${data.price}</p>
-//         </div>`;
-//         document.querySelector('.row').insertAdjacentHTML('beforeend',카드2)
-//       })
-//     })
-//   }else if(count===3){
-//     document.querySelector('.btn').style.display='none';
-//   }
-// })
-
-
-// var 어레이 = [8,2,3,4,50];
-
-// 어레이.sort((a,b)=>{
-//   return a-b;
-// })
-
-// console.log(어레이)
 
 
 </script>
