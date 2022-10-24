@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="011_for.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+        <!-- <div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100">
+          <h5>Card title</h5>
+          <p>가격 : 70000</p>
+        </div> -->
+    </div>
+  </div> 
+
+<script>
+  var products = [
+    { id : 0, price : 70000, title : 'Blossom Dress' },
+    { id : 1, price : 50000, title : 'Springfield Shirt' },
+    { id : 2, price : 60000, title : 'Black Monastery' }
+  ];
+
+
+
+  products.forEach((data,i)=>{
+    const 템플릿 = 
+    `<div class="col-sm-4">
+      <img src="https://via.placeholder.com/600" class="w-100">
+      <h5>${data.title}</h5>
+      <p>가격 : ${data.price}</p>
+      <button class="buy">구매</button>
+      </div>`
+    document.querySelector('.row').insertAdjacentHTML("beforeend",템플릿);
+  })
+ 
+//구매버튼 누르면 장바구니에 상품명 추가 
+//실제로는 ajax 로 post 요청해서 서버에 데이터를 저장시켰을텐데. 서버가 없으니까 데이터를 저장할 가장 쉬운 곳은 변수
+//그런데, 변수의 단점은 페이지 새로고침시 다시 초기값으로 변함. 데이터를 영구적으로 저장하기 위해서 변수는 적합하지 않음. 
+//데이터를 반영구적으로 저장할 수 있는 방법은 브라우저 안에 저장공간을 이용하는 것. 유저몰래 정보를 저장할수있음. 구매버튼 누르면 localStorage에 상품명 저장해두자
+//localStorage 와 sessionStorage 는 이름:값 형태로 저장가능하다.용량은 5MB 문자/숫자만 저장가능
+//localStorage는 사이트 재접속해도 유지 VS sessionStorage는 사이트 나가면 자동삭제
+//IndexedDB: 구조화된 대용량데이터 저장시
+//Cookies 보통 로그인 정보 저장
+//Cache Storage : html css js 파일 저장하는 곳
+
+
+localStorage.setItem('이름', '값') //자료저장하는법
+localStorage.setItem('이름', 'kim') 
+localStorage.getItem('이름') //로컬스토리지에 저장되어있던 자료꺼내는법
+console.log(localStorage.getItem('이름'))
+localStorage.setItem('나이',28)
+localStorage.setItem('주소','서울시 마포구')
+localStorage.setItem('출생년도',1995)
+// localStorage.removeItem('이름') //로컬스토리지 자료 삭제하려면 removeItem()
+
+
+
+//array,object 저장하려면
+
+localStorage.setItem('num',[1,2,3]); // 그냥 이렇게 저장하면 대괄호 없어져보임,array를 저장하면 강제로 문자로 변환해주기 때문
+//array를 그대로 대괄호가 나오도록 저장하려면 array를 변수에 담아. 그리고array/object를 JSON으로 바꿔. 
+
+let arr = [1,2,3];
+// array/object 를 JSON으로 바꾸고 싶으면 JSON.stringify
+let newArr = JSON.stringify(arr);
+localStorage.setItem('num',newArr);
+localStorage.getItem('num')
+let 꺼낸거 = localStorage.getItem('num');
+console.log(꺼낸거)
+//JSON-> array/object 로 바꾸고 싶으면 JSON.parse
+console.log(JSON.parse(꺼낸거));
+//JSON을 array로 바꿔줬기에 인덱싱이 자유롭게 가능하다
+console.log(JSON.parse(꺼낸거)[0])
+
+//localStorage 데이터 수정하려면?? 3단계로 짜야해
+// 1. 로컬스토리지에서 자료꺼냄
+// 2. 자료 꺼낸거 수정함
+// 3. 다시 array를 넣는다. 
+
+sessionStorage.setItem('값',20)
+
+//array를 JSON 으로 바꾸는 3단계 방법
+let 어레이 = [1,2,3,4,5]
+let 새어레이 = JSON.stringify(어레이)
+localStorage.setItem('숫자',새어레이)
+
+
+
+//object를 JSON으로 바꾸는 3단계 방법
+const 객체 = {'이름':'선은혜','나이':28};
+const 새객체 = JSON.stringify(객체);
+localStorage.setItem('객체',새객체);
+
+
+
+</script>
+
+
+</body>
+</html>
