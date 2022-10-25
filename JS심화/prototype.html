@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+      //prototype 유전자 . prototype에 값을 추가하면 모든 자식들이 물려받기 가능
+      //constructor를 만들면 prototype이라는 공간이 자동으로 생긴다.
+
+      function Machine(이름){
+        this.name = 이름;
+        this.age = 15;
+        this.satyHi=function(){
+          console.log('안녕하세요'+this.name+'입니다')
+        }
+      }
+
+      Machine.prototype.gender = '남'; //prototype에 값을 추가하면 모든 자식들이 물려받기 가능
+
+      var 학생1 = new Machine('Park');
+      var 학생2 = new Machine('Kim');
+
+      //* 자바스크립트 동작원리
+      //1) 학생1이 직접 name을 가지고있는가? 그럼 출력
+      //2) 가지고 있지 않은값을 출력하려고 하면. 내가 gender를 가지고 있지 않다면. 학생1의 부모 유전자 gender를 가지고 있는지 물어본다. 부모가 가지고 있으면 자료는 출력이됨.
+      학생1.name; 
+      학생1.gender; 
+      학생1.toString(); //Obejct/Array에 붙이면 글자로 변하는 내장함수
+      //학생1은 toString이라는게 없는데 쓸수있어 왜?
+      //내가 값이 없으면 부모의 prototype에 찾아봐 Machine의 prototype에서 찾아본다. Machine에도 없으면 부모의 부모 유전자에서 찾아봄. toString은 부모의 부모 유전자에 있음
+
+      
+      //array만드는 법
+      var arr = [1,2,3];
+      var arr = new Array(1,2,3); //실제 컴퓨터가 array만드는 방식
+
+      Array.prototype;
+      arr.sort();
+
+      //object 만드는 법
+      var obj = {name:'Kim'}
+      var obj = new Object() // 모든 object 자료형은 Object 부모를 이용해 이렇게 만든다
+
+
+    </script>
+</body>
+</html>

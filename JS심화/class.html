@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+      //1) 코딩애플 
+      // var nunu = {
+      //   q : 'consume',
+      //   w : 'snowball'
+      // }
+
+      // var garen ={
+      //   q: 'strike',
+      //   w: 'courage'
+      // }
+
+      //object 생성기계 ES5 
+
+      // function 기계(구멍1,구멍2){
+      //   this.q = 구멍1;
+      //   this.w = 구멍2;
+      // }
+
+      // var nunu = new 기계('consume','snowball');
+      // var garen =new 기계('strike','courage');
+
+      
+      //object 생성기계 ES6문법
+
+      class Hero{
+        constructor(구멍1,구멍2){
+        this.q = 구멍1;
+        this.w = 구멍2;
+        }
+      }
+    var nunu = new Hero('consume','snowball');
+    var garen = new Hero('strike','courage');
+
+
+    // 2) 앨리코딩
+    // 1. 클래스 선언
+
+    class Person{
+      constructor(name,age){
+        this.name = name;
+        this.age =age;
+      }
+      speak(){
+        console.log(`${this.name}:hello!`)
+      }
+    }
+
+    const ellie = new Person('ellie',20);
+    console.log(ellie.name)
+    console.log(ellie.age) 
+    ellie.speak();
+
+    //2.getter & setter
+    
+    class User{
+      constructor(firstName,lastName,age){
+        this.firstName =firstName;
+        this.lastName = lastName;
+        this.age = age;
+      }
+
+      get age(){
+        return this.age;
+      }
+      set age(value){
+        this.age=value;
+      }
+    }
+
+    const user1 = new User('steve','Job',-1);
+    console.log(user1.age);
+
+
+
+    </script>
+</body>
+</html>

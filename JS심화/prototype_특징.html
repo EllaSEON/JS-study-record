@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prototype chain, __proto__</title>
+</head>
+<body>
+    <script>
+
+      function Machine(이름){
+        this.name = 이름;
+        this.age = 15;
+        this.satyHi=function(){
+          console.log('안녕하세요'+this.name+'입니다')
+        }
+      }
+
+      Machine.prototype.gender = '남'; //prototype에 값을 추가하면 모든 자식들이 물려받기 가능
+
+      var 학생1 = new Machine('Park');
+      var 학생2 = new Machine('Kim');
+
+
+      //내 부모의 유전자(부모의 prototype)을 검사하고 싶다면 __proto__
+      학생1.__proto__ //부모의 유전자를 출력해주세요. 윗부모는 Machine.prototype임
+      Machine.prototype
+
+
+      //object간의 상속관계를 나타낼수있음. 실제로는 이렇게 잘 안씀
+      var 부모 = {name:'Kim'};
+      var 자식 = {};
+      자식.__proto__=부모;
+      자식.name;
+
+     
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
