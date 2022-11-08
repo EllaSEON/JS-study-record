@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position:sticky</title>
+    <!-- (주의점) position : sticky는
+    1. 스크롤을 할 만한 부모 박스가 있어야하고
+    2. top 등 좌표속성과 함께 써야 제대로 보입니다.  -->
+    <style>
+      .grey{
+        background:lightgrey;
+        height:2000px;
+        margin-top:500px;
+        /* float를 해제하기 위해서 부모태그에 overflow:hidden을 적용함 */
+        overflow:hidden;
+      }
+      .image{
+        float:right;
+        width:400px;
+        /* 뷰포트 상단 100px고정이됨, 가변적으로 poxition이 fixed가 된다 스크롤이 다 끝마쳐서 부모 div박스를 넘어갈때 fixed가 해제가 됨 */
+        position:sticky;
+        top:100px;
+      }
+      .text{
+        float:left;
+        width:300px;
+      }
+    </style>
+</head>
+<body style="background:grey; height:3000px">
+    <div class="grey">
+      <div class="image">
+        <img src="https://codingapple.com/wp-content/uploads/2019/10/appletv.jpg" width="100%" alt="">
+      </div>
+      <div class="text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti soluta quos aliquam quae voluptatum optio dolores quas aut nobis, amet exercitationem porro omnis deserunt distinctio quaerat quia alias. Vel, omnis?
+      </div>
+      <div class="text" style="margin-top:300px;">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti soluta quos aliquam quae voluptatum optio dolores quas aut nobis, amet exercitationem porro omnis deserunt distinctio quaerat quia alias. Vel, omnis?
+      </div>
+    </div>
+</body>
+</html>
