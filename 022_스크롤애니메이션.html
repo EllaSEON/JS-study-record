@@ -12,16 +12,17 @@
         margin-bottom:1600px;
         background:yellow;
       }
+      .card-box{
+        position:sticky;
+        top:100px;
+        margin-top:200px;
+        transition:all 0.2s;
+      }
       .card-box img{
         /* 이미지 가운데 정렬 */
         display:block;
         margin:auto;
         max-width:80%;
-      }
-      .card-box{
-        position:sticky;
-        top:100px;
-        margin-top:200px;
       }
     </style>
 </head>
@@ -40,24 +41,40 @@
 
 
     <script>
+/*1차 함수가 사용되고 있음.
+스크롤높이가 650일때는 opacity가 1
+스크롤 높이가 1150일때는 opacity가 0
+즉 서로 대응이 되고 있다. => 대응이되면 일차함수 바로 떠오르자(그래프까지 같이 떠올리자)
+스크롤높이 값이 올라갈수록 투명도는 낮아지는 음의함수
+(650,1)(1150,0)
+y= 기울기x + b 라는 식이 떠올라야한다.
+기울기 값은 y좌표의 증가량/x좌표의 증가량.
+b의 값은 x에는 650을 대입해보고 y에는 1을 대입해봐서 풀수있다.
+*/
+
+
+
+
 // 스크롤 애니메이션 : window가 스크롤될때마다 안의 함수 실행해주세요
       window.addEventListener('scroll',()=>{
         let 높이 = window.scrollY;
-        // console.log(높이)
+        console.log(높이)
 
         let 투명도 = (-1/500)*높이+115/50;
 
     //650~ 1150까지 스크롤바를 내리면, 첫째카드의 opacity 1~0으로 서서히 변경해주삼
 
       document.querySelectorAll('.card-box')[0].style.opacity = 투명도;
-      document.querySelectorAll('.card-box')[0].style.transform = 'scale(0.9,0.9)';
+
+      let 크기 = (-0.1/500)*높이+(565/500)
+
+    //650 ~ 1150 까지 스크롤 바를 내리면, 첫째카드의 크기를 0.9로 줄여주라
+      document.querySelectorAll('.card-box')[0].style.transform = `scale(${크기})`
       
 
       })
 
-
-      //카드가 작아지는걸 구현(transform scale 속성 이용)
-      //http://www-db.deis.unibo.it/courses/TW/DOCS/w3schools/jsref/prop_style_transform.asp.html#gsc.tab=0
+      //정승제 1차 함수 인강:  http://www-db.deis.unibo.it/courses/TW/DOCS/w3schools/jsref/prop_style_transform.asp.html#gsc.tab=0
     </script>
 </body>
 </html>

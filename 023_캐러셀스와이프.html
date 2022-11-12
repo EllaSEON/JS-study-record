@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="009_style.css">
+<style>
+
+.slide-container{
+  margin-top:100px;
+}
+</style>
+</head>
+<body> 
+
+
+<!-- 2번 버튼 누르면 이미지가 슬라이드 돼서 바뀜-->
+<div style="overflow:hidden">
+  <div class="slide-container">
+    <div class="slide-box">
+      <img src="/img/car1.png" draggable="false" alt="">
+    </div>
+    <div class="slide-box">
+      <img src="/img/car2.png" alt="">
+    </div>
+    <div class="slide-box">
+      <img src="/img/car3.png" alt="">
+    </div>
+  </div>
+</div>
+
+<button class="slide-1">1</button>
+<button class="slide-2">2</button>
+<button class="slide-3">3</button>
+<button class="next">다음</button>
+<button class="before">이전</button>
+
+<script>
+
+//기능1)
+//내가 드래그한 거리만큼 '박스'도 왼쪽으로 움직임 
+//사진 갯수와 상관없이 잘 동작하는 코드로 만들기
+
+//mousedown(마우스로 누를때),mouseup(마우스를 뗄때),mousemove(마우스움직일때) 이벤트 사용하기, e.clientX 사용하면 마우스가 위치한 현재 x축 좌표 알수있음
+//click(mousedown과 mouseup 합쳐있는거)
+
+var 시작좌표 = 0;
+var 눌렀냐 = false;
+document.querySelectorAll('.slide-box')[0].addEventListener('mousedown',(e)=>{
+  시작좌표 = e.clientX
+  눌렀냐 = true;
+})
+document.querySelectorAll('.slide-box')[0].addEventListener('mousemove',(e)=>{
+  //마우스 찍은후에 박스 움직이게 해주세요
+  if(눌렀냐===true){
+  console.log(e.clientX-시작좌표);
+  document.querySelector('.slide-container').style.transform = `translateX(${e.clientX-시작좌표}px)`
+  }
+})
+document.querySelectorAll('.slide-box')[0].addEventListener('mouseup',(e)=>{
+  눌렀냐 = false;
+})
+
+
+
+
+
+
+
+
+
+
+//기능 2
+//손 놓으면 100px 이상 이동시 둘째 사진 보임
+// 아니면 첫째사진 보임
+
+</script>
+
+</body>
+</html>
