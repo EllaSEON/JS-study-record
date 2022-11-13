@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+      //default 파라미터
+      //b자리에 아무것도 안넣을 경우 10을 넣어주세요~
+      //default 파라미터는 b자리에 파라미터 안넣었을 때만 발동함
+
+      function 더하기(a,b=3*a){
+        console.log(a + b)
+      }
+
+      더하기(1);
+      더하기(1,2);
+
+      console.log('-----------')
+      //default파라미터 자리에는 함수도 들어올수있다
+
+      function 임시함수(){
+        return 10
+      }
+
+      function 더하기1(a,b=임시함수()){
+        console.log(a+b)
+      }
+      더하기1(1);
+
+
+      //함수의 arguments
+      //모든 파라미터를 한꺼번에 싸잡아서 다루고 싶을 경우
+      //함수에 들어온 파라미터를 전부 다 감싸서 array로 감싸줌
+
+      function 함수(a,b,c){
+        console.log(arguments[0]); //첫째파라미터
+        console.log(arguments[1]); // 둘째 파라미터
+        console.log(arguments[2]); // 셋째 파라미터
+        console.log(arguments);
+      }
+      함수(1,2,3)
+      
+      console.log('-----------')
+
+      //입력한 파라미터를 전부 콘솔창에 출력해주는 함수 arguments
+
+      function 함수1(a,b,c){
+        for (let i =0; i<arguments.length;i++){
+          console.log(arguments[i]);
+        }
+      }
+
+      함수(2,3,4)
+    
+    </script>
+</body>
+</html>

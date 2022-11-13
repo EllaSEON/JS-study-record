@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>템플릿리터럴</title>
+</head>
+
+<body>
+
+<script>
+
+//1. `` 템플릿 리터럴을 쓰는 이유
+// 1) 문자열 안에 엔터키를 치기 위해서
+// 2) 문자열 합치거나 변수 넣기 쉬움
+
+var 문자 = `손흥
+민`;
+
+var 변수 = '손흥민'
+var 문자열 = '안녕하세요' + 변수 + '입니다.'
+console.log(문자열)
+
+var 백틱 = `안녕하세요 ${변수} 입니다.`
+console.log(백틱)
+
+//3) tagged literal 함수랑, 문자랑 같이 쓸수있어
+// 함수 옆에 소괄호 대신에 백틱 문자열쓸수있어
+// 단어 순서를 변경하거나, 단어를 제거하거나, ${변수}위치를 옮기거나 할수있음
+
+
+//해체분석기 첫번째 파라미터 : 문자들을 Array화 해준다.
+// 두번째 파라미터는 ${변수}를 뜻한다.
+// 세번째 파라미터는 마지막 ${변수}를 뜻한다
+
+// function 해체분석기(문자들,변수들,변수들2){
+//   console.log(문자들);
+//   console.log(변수들);
+//   console.log(변수들2);
+// }
+
+// console.log(해체분석기`안녕하세요 ${변수} 입니다. ${변수}` )
+
+
+//예시) 해체분석기를 이용해서 문자를 어떻게 해체하지?
+
+function 해체분석기(문자들,변수들){
+  console.log(문자들[1]+ 문자들[0]);
+  console.log(문자들[1]+변수들+문자들[0]);
+}
+
+console.log(해체분석기`안녕하세요 ${변수} 입니다.`)
+
+
+
+
+
+
+
+</script>
+</body>
+
+</html>

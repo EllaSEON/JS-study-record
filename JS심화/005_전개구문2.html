@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+//전개구문, spread operator
+// 함수 파라미터 넣을때도 유용하다
+
+//array 내의 모든 데이터를 파라미터로 집어넣고 싶은 경우
+
+function 더하기(a,b,c){
+  console.log(a+b+c)
+}
+
+var 어레이 = [10,20,30]
+더하기(어레이[0],어레이[1],어레이[2]); //array 해체작업 너무 번거롭다
+
+더하기.apply(undefined,어레이) //어레이를 파라미터에 집어넣는 옛날 방식
+더하기(...어레이); //대괄호를 제거한 자료들이 파라미터에 쏙 들어감
+
+
+    </script>
+</body>
+</html>
