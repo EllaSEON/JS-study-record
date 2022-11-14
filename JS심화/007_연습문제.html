@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spread,rest파라미터 연습문제</title>
+</head>
+
+<body>
+  <script>
+//글자를 알파벳 순으로 정렬해주는 함수를 만들고 싶음
+//정렬('bear')를 했을 때, a b e r 로 입력되게 하려면??
+
+
+function 정렬(글자){
+  console.log(...[...글자].sort());
+  console.log([...글자].sort().join());
+}
+정렬('bear')
+
+
+function 글자세기(글자){
+  var 결과 ={};
+  [...글자].forEach((data)=>{
+    //결과객체 안에 항목이 있으면 1을 더해줘
+    if(결과[data]>0){
+      결과[data] += 1;
+    }
+    //결과 객체 안에 항목이 없으면 1을 해줘
+    else{
+      결과[data]=1;
+    }
+  })
+  console.log(결과)
+}
+글자세기('안녕안녕')
+
+var 객체 = {a:1,b:2}
+
+console.log(객체.a)
+console.log(객체['b'])
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

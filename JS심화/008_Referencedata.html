@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+
+<body>
+  <script>
+ //primitive data type: 변수에 값이 그대로 저장이 된다(ex: 문자, 숫자)
+ //reference data type : 변수 reference가 저장된다. 변수에 값이 저장이 안됨(ex: Array, Object)
+
+var 변수 = 'dddd';
+ var 어레이 = [1,2,3];
+ //obj에 {name:'kim'}이 저쪽에 있습니다~ 라는 화살표가 들어있음
+ var obj = {name:'kim'}
+
+
+ //primitive data type 복사 다루기
+ var 이름1 = '김'
+ var 이름2 = 이름1;
+ 이름1 ='박';
+ console.log(이름1)
+ console.log(이름2) //이름2는 우리가 바꾼적이 없으니 '김'이 나온다
+
+
+
+ 
+ //reference data type 복사 다루기
+ console.log('-----------');
+
+
+ var 이름3 ={name:'김'};
+ console.log(이름3.name);
+ var 이름4 = 이름3;
+ 이름3.name ='박';
+ console.log(이름3.name);
+ console.log(이름4.name); //이름4는 따로 바꾸지 않고, 이름3만 바꿨는데 박으로 바껴있다
+
+
+//왜 이런현상이 일어나는가? reference 데이터 타입은 {name:'김'}이 저장되는게 아니다. 즉, 값이 저장되는게 아니고 그냥 {name:'김'}이 저기있어요 라는 화살표(reference)가 저장이된다. 즉, 메모리 공간안에 어딘가에 있어요. 저기 있어요라고 가리키는 화살표가 저장된 것 뿐. 
+
+//이름2에 이름1을 복사하면, object가 들어가있는게 아니라, 화살표를 복사한것임
+//그래서 array, object 는 함부로 복사하면 안된다
+//복사하고 싶으면 object 복사기계를 사용하자(constructor)
+
+
+var 성1 = {name:'김'};
+var 성2 = {name:'김'};
+
+성1 == 성2 //false로 나옴
+성1 ===성2 //false 로 나옴
+
+
+//오브젝트를 변경해주는 함수 만들기
+
+// function 변경(obj){
+//   obj.name = 'Park'
+// }
+
+// 변경(성1) //{name:'Park'}으로 변경되어있음
+
+
+//오브젝트를 재할당해주는 함수 만들기
+function 변경(obj){
+  obj = {name:'park'}
+}
+
+변경(성1) // 재할당 해주려했으나 그대로 name:'김'이 나옴 왜 실패함?
+//파라미터는 변수생성&할당과 똑같은 말이다. 
+
+
+
+
+  </script>
+</body>
+
+</html>

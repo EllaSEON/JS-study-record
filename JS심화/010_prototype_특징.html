@@ -8,6 +8,12 @@
 </head>
 <body>
     <script>
+      //prototype 특징
+      //1)prototype은 함수에만 몰래 생성된다.
+      
+      var arr = [1,2,3];
+      arr.prototype //이렇게 콘솔창에 입력하면 안나옴
+      Machine.prototype //이렇게 콘솔창에 입력하면 나옴. constructor 생성자함수니까
 
       function Machine(이름){
         this.name = 이름;
@@ -23,24 +29,17 @@
       var 학생2 = new Machine('Kim');
 
 
+      //2)학생1은 함수가 아니니까 학생1.prototype 못해. 그런데,부모의 prototype을 보고 싶다면 __proto__를 해보자
       //내 부모의 유전자(부모의 prototype)을 검사하고 싶다면 __proto__
       학생1.__proto__ //부모의 유전자를 출력해주세요. 윗부모는 Machine.prototype임
-      Machine.prototype
+      Machine.prototype === 학생1.__proto__
 
-
+      //3) __proto__를 이용해 부모님 강제등록하기
       //object간의 상속관계를 나타낼수있음. 실제로는 이렇게 잘 안씀
-      var 부모 = {name:'Kim'};
+      var 부모 = {성:'Kim'};
       var 자식 = {};
-      자식.__proto__=부모;
-      자식.name;
-
-     
-
-
-
-
-
-
+      자식.__proto__=부모; //prototype이 없지만, __proto__를 이용해서 서로 부모자식간의 관계를 등록할수있음
+      자식.성;
 
     </script>
 </body>

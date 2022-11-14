@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>prototype</title>
+</head>
+
+<body>
+  <script>
+    //prototype 상속을 구현할 수 있는 문법
+    //유전자, 원형
+    //constructor을 만들면 prototype이라는 공간이 자동으로 생긴다
+    //prototype에 값을 추가하면 모든 자식들이 물려받기가 가능하다
+
+
+    function Machine(성){
+      this.name = 성
+      this.age = 15;
+      this.sayHi = function(){
+        console.log(`안녕하세요 ${this.name} 입니다.`)
+      }
+    }
+
+    var 학생1 = new Machine('Park'); //Machine이 가지고 있는 name,age,sayHi속성을 학생 1이 물려받았다.
+    var 학생2 = new Machine('Kim');//Machine이 가지고 있는 name,age,sayHi속성을 학생 2가  물려받았다.
+    console.log(학생1)
+
+    console.log(Machine.prototype); 
+    Machine.prototype.gender = '남'; //Machine.prototype이라는 오브젝트에 gender라는 key와 '남'이라는 value를 추가함
+
+    console.log(학생1.gender) //gender을 쓸수있는 이유는 Machine이라는 부모의 유전자인 prototype에 등록을 했기 때문
+    console.log(학생2.gender)
+
+
+    //자바스크립트 동작원리
+    console.log(학생1.name) // 이걸 하면 학생 1이 직접 name을 가지고 있는지 확인함. 내가 가지고 있으면 내가 가지고 있는 값을 출력함
+    console.log(학생1.gender) //내가 gender라는 값을 안가지고 있으면 그 다음에 부모 유전자(prototype)에 가서 검사해서, gender가 있으면 실행을 해줌
+    console.log(학생1.toString());//자바스크립트 object에 붙일수있는 내장함수임
+    //자바스크립트 내장함수를 쓸수있는 이유는 학생1의 부모인 Machine.prototype에서 보고, 거기도 없으면 Machine.prototype의 부모를 또 찾아본다.
+
+    var arr = [1,2,3]; //우리가 어레이 만드는 방식
+    var arr = new Array(1,2,3)//실제 컴퓨터에서 array가 만들어지는 방식, new 키워드를 이용해서 array 만드는 기계로 부터 하나 뽑기 가능. 부모가 가진 property를 arr도 쓸수있음
+    arr.sort()// 그래서 sort()를 쓸수있음
+
+    //arr.sort()를 쓸수 있는 이유 정리
+    arr.sort()
+    //(1) arr에 sort()가 있는가?
+    //(2) 없으면 arr 부모의 prototype 유전자에 sort()가 있는가? Array.prototype 에 기본함수를 다 가지고 있어서 쓸수있음
+    
+    
+
+  </script>
+</body>
+
+</html>
