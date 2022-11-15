@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+
+<body>
+  <script>
+
+    // class Dog {
+    //   constructor(종류, 색깔) {
+    //     this.type = 종류;
+    //     this.color = 색깔;
+    //   }
+    //   한살먹기() {
+    //     if (this instanceof Cat) {
+    //       console.log(this.age += 1)
+    //     } else {
+    //       console.error('에러')
+    //     }
+    //   }
+    // }
+
+    // var 강아지1 = new Dog('말티즈', 'white');
+    // var 강아지2 = new Dog('진돗개', 'brown');
+
+    // class Cat extends Dog {
+    //   constructor(종류, 색깔, 나이) {
+    //     super(종류, 색깔);
+    //     this.age = 나이
+    //   }
+    // }
+
+    // var 고양이1 = new Cat('코숏', 'white', 5)
+    // var 고양이2 = new Cat('러시안블루', 'brown', 2)
+
+
+    //
+    // class Unit {
+    //   constructor(공격력 = 5, 체력 = 100) {
+    //     this.공격력 = 공격력;
+    //     this.체력 = 체력;
+    //   }
+    //   get battlePoint() {
+    //     return this.공격력 + this.체력
+    //   }
+    //   set heal(a) {
+    //     this.체력 += a;
+    //   }
+    // }
+
+    // var 인스턴스 = new Unit(100, 200);
+    // console.log(인스턴스.battlePoint)
+    // console.log(인스턴스.heal = 50)
+
+
+
+    
+      var data = {
+        odd: [],
+        even: [],
+        setter: function(...숫자) {
+        숫자.forEach((item)=>{
+          if(item%2==0){
+            this.odd.push(item)
+          }else{
+            this.even.push(item)
+          }
+        })
+      },
+        getter: function(){
+          return [...this.odd,...this.even].sort();
+        }
+    }
+
+    data.setter(8,4,3,2,1,4,5);
+    data.getter(8,4,3,2,1,4,5);
+
+
+
+
+
+  </script>
+</body>
+
+</html>

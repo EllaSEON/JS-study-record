@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class를 복사하는 extends,super</title>
+</head>
+<body>
+  <script>
+    //extends 쓰는 이유(class 복사)
+    //만들어놓은 class랑 유사한 class를 하나 더 만들고싶으면?
+    //이미 만들어놓은 class를 상속하는거
+
+    //사실 그냥 class 한개 더 하드코딩 해도돼..
+    //근데, class안에 내용물이 많으면 힘드니까.
+
+    class 할아버지{
+      constructor(name,nickname){
+        this.성 = 'Kim';
+        this.이름 = name;
+        this.별명 = nickname;
+      }
+    }
+    
+    var 할아버지1 = new 할아버지('만덕','별명');
+    console.log(할아버지1)
+
+    //아버지라는 클래스를 만들건데, 할아버지가 가진 특성들을 그대로 물려받아서 똑같이 만들거임
+
+  class 아버지 extends 할아버지{
+    constructor(name,nickname){
+      super(name,nickname); //this.성 ='kim', this.이름 = name 이자리에다 가져다줘, 그런데 할아버지 constructor의 파라미터도 가져와야해
+      this.나이 = 50; //extends해서 만든 class는 this 그냥 못쓴다. super()를 써야함
+    }
+  }    
+  //super의 의미는 할아버지의  constructor(name){this.성 = 'Kim' this.이름 = name;}을 가져왔다고 생각하면됨
+  //super() : 물려받는 class의 constructor라는 뜻
+
+  var 아버지1 = new 아버지('만수','별명');
+  console.log(아버지1)
+  아버지1.나이 = 30;
+  console.log(아버지1)
+
+
+  console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+  //super의 용도는 또있다.
+
+  class Grandfather{
+    constructor(name){
+      this.성 = 'kim';
+      this.이름 = name;
+    }
+    sayHi(){
+      console.log('안녕 저는 할아버지에요') //할아버지 prototype에 함수가 추가됨
+    }
+  }
+
+  var grandfather1 = new Grandfather('만덕');
+
+
+  class Father extends Grandfather{
+    constructor(name){
+      super(name); //constructor 안의 super는 부모 class의 constructor의미 
+      this.나이 = 50;
+    }
+    sayHi(){
+      console.log('안녕 저는 아버지에요') //아버지라는 prototype에 sayHi추가됨
+      super.sayHi(); //constructor 바깥에서 super를 쓰면 부모 class의 prototype을 의미. 부모 prototype에 각인된 sayHi를 실행시켜주세요
+    }
+  }
+
+  var father1 = new Father('만수') //아버지1도 sayHi쓸수있을까?
+
+  father1.sayHi(); //아버지1 이 sayHi를 쓰면 나랑 가까운 prototype(아버지)을 먼저 출력을 해주고, super.sayHi()로 인해서 할아버지가 나옴
+
+  </script>   
+</body>
+</html>

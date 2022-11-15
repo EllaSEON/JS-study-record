@@ -1,12 +1,92 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>prototype 연습문제</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>prototype 연습문제</title>
 </head>
+
 <body>
+  <script>
+    // 1번
+
+    function Student(이름, 나이) {
+      this.name = 이름;
+      this.age = 나이;
+      this.sayHi = function () {
+        console.log('안녕 나는 ' + this.name + '이야');
+      }
+    }
     
+    var 학생1 = new Student('Kim', 20);
+    var 학생2 = new Student('Park', 21);
+    var 학생3 = new Student('Lee', 22);
+
+    // Student.prototype.sayHi = function(){console.log(`안녕 나는 ${this.name}이야`)}
+
+    //2번
+    function Parent() {
+      this.name = 'Kim';
+    }
+    var a = new Parent();
+
+    a.__proto__.name = 'Park'; //부모의 name 속성 park으로 변경
+    console.log(a.name) //나한테 name이 있으니까부모꺼 안물려받고 내가 직접 가지고 있는 {name:'Kim'}이 우선출력
+
+    //3번
+    function Student(이름, 나이) {
+      this.name = 이름;
+      this.age = 나이;
+    }
+
+    var 학생1 = new Student('Kim', 20);
+
+    Student.prototype.sayHi = () => {
+      console.log('안녕 나는 ' + this.name + '이야');
+    }
+
+    학생1.sayHi(); //왜 이 코드가 제대로 안나오죠?
+    //arrow function은 this를 바깥에 있는 this를 그대로 사용하고 싶을 때 쓰는 함수
+    //sayHi 함수에 그냥 this 하나만 출력해보시면 window 같은게 출력될 것
+    //arrow function을 사용하시면 그냥 바깥 아무데나 있던 값을 가져와서 사용합니다. 
+    //바깥 this 값은 window이며, 그 window를 그대로 저기 함수 안에다가 적용했기 때문
+
+
+    //4번
+    //모든 array에 적용할 수 있는 함수를 직접 새로 만들려면?
+    //내가 자주 사용할법한 내장함수들을 많이 만들어두시면 더 효율적인 코딩생활이 가능함
+
+    Array.prototype.remove3 = function () {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] === 3) {
+          arr.splice(i, 1);
+        }
+      }
+    };
+
+    // Array.prototype.remove3 = function () {
+    //   for (var i = 0; i < this.length; i++) {
+    //     if (this[i] === 3) {
+    //       this.splice(i, 1);
+    //     }
+    //   }
+    // };
+
+    var arr = [1, 2, 3, 4];
+    arr.remove3();
+    console.log(arr); //[1,2,4]
+
+
+    // Array.prototype.remove3 = function(){
+    //   console.log(this.length)
+    // }
+
+    //위의 코드에서의 this라는 키워드는 현재 remove3이라는 함수를 작동시키는 object (여기서는 array) 라는 뜻
+
+
+  </script>
 </body>
+
 </html>

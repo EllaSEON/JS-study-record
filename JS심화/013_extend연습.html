@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+  <script>
+    
+    var mom1 = {name: '미미', age : 45};
+    var mom2 = {name: '가가', age : 35};
+
+    class Mom{
+      constructor(이름,나이){
+        this.name = 이름;
+        this.age = 나이;
+        this.sayHi= function(){
+          console.log(`안녕 나는 ${this.name}이야`)
+        }
+      }
+      sayBye(){
+        console.log('잘가요 내사랑')
+      }
+    }
+
+    class Child extends Mom{
+      constructor(이름,나이,태어난곳){
+        super(이름,나이)
+        this.place = 태어난곳
+      }
+      sayBye(){
+        console.log('잘가')
+        super.sayBye();
+      }
+    }
+
+    var child1 = new Child('김지현',45,'seoul')
+    console.log(child1)
+    child1.sayBye();
+
+
+
+    var mom1 = new Mom('미미',45)
+    console.log(mom1)
+
+
+  </script>
+</body>
+</html>

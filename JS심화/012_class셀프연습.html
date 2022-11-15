@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+  <script>
+    
+//  var child1 = {familyName: '선',name:'은혜',age:28};
+//  var child2 = {familyName: '선',name:'은주',age:25};
+
+
+class Father{
+  constructor(성,이름,나이){
+    this.familyName = 성;
+    this.name = 이름;
+    this.age = 나이;
+    this.sayHi = function(){
+      console.log(`안녕 나는 ${this.familyName}${this.name}이고, ${this.age}살이야`)
+    }
+  }
+  sayMoney(){
+    console.log(`우리집은 아빠가 돈이많아`)
+  }
+}
+
+var child1 = new Father('선','은혜',28);
+child1.sayMoney();
+child1.sayHi();
+var child2 = new Father('선','은주',25);
+child2.sayHi();
+child2.sayMoney();
+ 
+
+console.log(Father.prototype)
+
+
+  </script>
+</body>
+</html>

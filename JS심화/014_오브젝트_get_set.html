@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>object에서 쓰는 getter(데이터꺼냄)&setter(데이터수정)</title>
+</head>
+<body>
+  <script>  
+
+  //get 과 set은 꼭 필요한게 아니라 옵션이다. 함수 쓰고 싶으면 그냥 함수로 데이터 수정하고 꺼내삼~
+
+
+  //age라는 자료를 꺼내고 싶으면?
+  //사람.age를 주로 쓴다
+
+
+  var 사람 = {
+    name : 'Park',
+    age: 30,
+    nextAge(){
+      return this.age+1; //데이터를 꺼내는 함수 만들어보자
+    } // 내년 age를 알고싶을때, 함수를 만들어보자
+  }
+
+  console.log(사람.age+1);
+  console.log(사람.nextAge()); //사람.age+1과 같다
+
+  //함수를 만들어서 object 데이터를 다루는 이유는?
+  //숫자가 포함된 긴 array나 큰 object가 들어가있으면 꺼내쓰는 법을 미리 함수로 정의하면 좋다. 
+  //즉, object 안의 자료가 복잡할때 개이득
+
+
+
+  //또, object안에 함수를 만들면, object 자료 수정할때 좋다
+  
+  var person = {
+    name : 'Park',
+    age: 30,
+    nextAge(){
+      return this.age+1;
+    },
+    setAge(나이){
+      return this.age = parseInt(나이);  //나이를 수정하는 함수를 만들어보자
+    }
+  }
+
+  console.log(person.setAge(200)); //setAge라는 함수를 쓸때마다 파라미터자리에 숫자를 쓸수있다. 
+
+  person.age = 20; //object를 이거처럼 직접 변경하는게 아니라
+  person.setAge(20); //이런식으로 데이터 수정해주는 함수를 제작할수있다
+
+  //데이터 수정하는 함수를 만들면 뭐가 좋은데?
+  console.log(person.setAge('20')) // 문자 20을 넣는 실수를 할수 있을텐데. 함수에서 자체적으로 거를수있다. 즉, 실수를 함수에서 막을수있다
+
+
+  //조금 더 데이터를 쉽게 꺼내려면 함수 앞에 get이라는 키워드 쓰자
+  //조금더 데이터를 쉽게 변경하려면 함수 앞에 set이라는 키워드 넣자
+
+  var person1 = {
+    name : 'Park',
+    age: 30,
+    get nextAge(){ //데이터 꺼낼때는 get, get안에는 return 이 꼭 있어야함, 파라미터는 절대 없어야함
+      return this.age+1;
+    },
+    set setAge(나이){  //소괄호 쓰는거 없이 데이터 수정하고 싶을때 set
+      return this.age = parseInt(나이); // set함수들(setter) 파라미터가 1개가 꼭있어야함.2개는 안됨
+    }
+  }
+
+  //복잡한 소괄호 꼴뵈기 싫다면 set/get키워드 쓰면된다
+  //즉, person1.setAge(20)을 하는게 아니라 아래처럼 쓰면됨
+  console.log(person1.setAge = '60')
+  console.log(person1.nextAge);//소괄호를 옆에 안붙여도 이자리에 나이를 출력해줌
+
+
+  </script>
+</body>
+</html>
