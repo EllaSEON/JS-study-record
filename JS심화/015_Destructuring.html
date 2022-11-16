@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destructuring</title>
+</head>
+
+<body>
+  <script>
+    //Destructuring(array, object 가능)
+    //object 나 array를 해체해서 쓸수있다.
+
+    //1. array
+    //아래 arr가 아주 중요한 자료라서 전부 꺼내서 변수에 담고싶을땐?
+    var arr = [2, 3, 4];
+
+    let 변수1 = arr[0];
+    let 변수2 = arr[1];
+    //위 방법이 귀찮아
+
+    //모양만 맞춰서 변수를 선언하면 변수가 생긴다
+    let [a, b, c] = [2, 3, 4]
+    console.log(a)
+    console.log(b)
+    console.log(c)
+
+    let [a1, b1, c1] = arr;
+    console.log(a1)
+
+    //변수 3개 만드는데 대응하는 걸 빼먹으면?
+    // 등호로 기본값 지정 가능하다
+
+    var [d, e, f = 10] = [2, 3]
+    console.log(f) //f 자리는 변수 선언안했는데 default 로 지정했으니 10이나옴
+
+    var [h, i, z] = []
+    console.log(h)// 아예 지정안했으면 undefined로 나옴
+
+
+    console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+    //2. object
+
+    //기존에는 변수의 키값을 빼서 변수를 만들었었어
+    var obj = { name: 'Kim', age: 30 };
+    var name = obj.name;
+    var age = obj.age;
+
+    //aa,bb라는 변수가 생성되고 'kim'과 30이라는 자료를 각각 할당해줌
+    let { name: aa, age: bb } = { name: 'park', age: 100 };
+    console.log(aa)
+    console.log(bb)
+
+    //변수 이름을 오브젝트 안의 key 이름과 똑같이 맞춰줄 때는 이렇게만 쓰셔도 됩니다. 
+
+    let { name1, age1 } = { name1: '송중기', age1: 35 };
+    console.log(name1)
+    console.log(age1)
+
+    //기본값 지정가능
+    //이름이라는 변수를 성으로 바꾸고 싶다면 이름 : 성으로 표시
+    var { 이름: 성 = 'kim', 나이 = 31 } = {};
+
+    console.log(성)
+    console.log(나이)
+
+
+    //연습문제 
+    //다음과 같은 Object의 데이터들을 각각 뽑아서 변수를 만들고싶습니다.
+    //키,몸무게, 상의사이즈,하의사이즈 정보를 각각 뽑아서 4개의 변수 어떻게만듦?
+
+    console.log('--------------')
+
+    let 신체정보 = {
+      body: {
+        height: 190,
+        weight: 70
+      },
+      size: ["상의 Large", "바지 30인치"],
+    };
+
+    let{body:{
+      height:키,
+      weight:몸무게
+      },
+      size:[상의사이즈,하의사이즈]} 
+      = 신체정보 
+
+    console.log(키)
+    console.log(몸무게)
+    console.log(상의사이즈)
+    console.log(하의사이즈)
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>import/export를 이용한 파일간 모듈식개발</title>
+</head>
+<body>
+  <script type ="module">
+    // < import 가져올거(이름은 내가 붙이고싶은 마음대로) from '경로' >
+    //<export default 내보낼거> 는 library.js에 쓴다
+
+
+    //library.js에 있는 모든걸 가져오는게 아니라 내가 필요한것만 가져온다.
+    //a라는 변수를 import 해올거에요~ 라는식
+
+
+    import {a as 별명} from './016_모듈강의.js'; //a부분은 맘대로 작명가능
+    console.log(별명)
+    
+
+  </script>  
+
+  <!-- <script src="016_library.js"></script>  -->
+  <!-- 자스 파일을 모듈화하는 기본 문법 -->
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모듈예제</title>
+</head>
+<body>
+  <script type="module">
+
+  //하나의 모듈에서는 하나의 default export만 가능함
+  //default값 제외하고 모든 모듈사항을 가져오려면 *을 쓰고 as 별명을 붙여줘야함
+
+  import 작명 from './016_모듈예제1.js'
+  console.log(작명.bye())
+  console.log(작명.name)
+
+
+  console.log('-----------')
+  import {greeting,CONSTANT} from './016_모듈예제1.js'
+  console.log(greeting());
+  console.log(CONSTANT.print());
+
+  console.log('---------')
+
+  import * as 모듈전부 from './016_모듈예제1.js'
+  console.log(모듈전부.greeting())
+  console.log(모듈전부.CONSTANT.print())
+
+  </script>
+</body>
+</html>
