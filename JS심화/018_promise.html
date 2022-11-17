@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+  <script>
+    //1) Promise
+    //콜백함수만드는 거랑 비슷한데, 콜백함수보다는 약간 기능이 많음
+    //코드가 콜백지옥이랑 다르게 옆으로 길어지지 않아서 좋음
+    //실패할 경우에도 코드 실행 가능
+
+    //new Promise에는 꼭 2개의 파라미터가 있어야함
+
+  var 프로미스 = new Promise(function(성공, 실패){
+    성공(); //프로미스가 성공판정 내리는법 -> 프로미스가 성공하면 then 안에 있는거 실행
+    실패(); // 프로미스가 실패판정 하는법 -> 프로미스안에서 실패함수가 실행되면 catch가 실행됨
+  }); //성공,실패 판정 기계
+  
+  프로미스.then(function(){
+    //프로미스가 성공일 경우 실행할 코드
+  }).then(function(){
+
+  }).catch(function(){
+    //프로미스가 실패할 경우에도 코드실행 가능
+  }).finally(function(){
+    //성공이든 실패든 뭔가 일어났을때 그때 코드실행해주삼
+  })
+
+
+ //예시) 콜백함수 쓰기 싫을 때 쓰는 promise 예시
+ //콜백함수 써도 되는데, 콜백 대신 예쁜 코드 짜고 싶을때 or 성공/실패에 맞춰서 각각 다른코드 실행하고 싶을때 씀
+ //프로미스 변수는 성공, 실패를 판정해주는 기계임
+
+  var 프로미스1 = new Promise(function(성공,실패){
+    var 어려운연산 = 1+1;
+    성공();  //1+1 연산이 끝나면 성공() 판정을 내려주세요~
+  });
+
+  프로미스1.then(function(){
+    console.log('성공했음 ㅋㄷㅋㄷ')
+  }).catch(function(){
+    console.log('실패함 ㅜㅜ')
+  })
+
+
+  //성공 or 실패시 데이터 전달하기
+
+  var 프로미스2 = new Promise(function(성공,실패){
+    var 어려운연산 = 1+1;
+    성공(어려운연산);  //1+1 연산이 끝나면 성공() 판정을 내려주세요~
+  });
+
+  프로미스2.then(function(결과){
+    console.log(결과) //성공함수 파라미터에 어려운연산 변수 집어넣으면 결과값(2)가 바로 출력됨
+  }).catch(function(){
+    console.log('실패함 ㅜㅜ')
+  })
+
+  
+  //2) 프로미스는 하찮은 연산 할때 안씀. 
+  //Ajax 요청이라든가 setTimeout, 이벤트리스너 할때 주로 씀
+  //1초 후에 성공하는 Promise 그리고 성공시 특정 코드를 실행하고 싶음
+ 
+  let 프로미스3 = new Promise(function(성공,실패){
+    setTimeout(function(){
+      성공();
+    },5000)
+  })
+  
+  프로미스3.then(function(){
+    console.log('성공했어요~') 
+  }).catch(function(){
+    console.log('실패했어요~')
+  })
+
+
+  //3) Promise 특징
+  //콘솔창에 new Promise()를 선언한 변수를 입력해보면 아래와 같은 상태가 출력됨
+  //일단 프로미스 변수를 콘솔창에 입력해보자
+
+  //1. 성공을 출력하면 Promise가 <resolved>
+  //2. 판정 대기중이면 <pending>
+  //3. 실패하면 <rejected> 
+
+
+  //4) Promise에 대한 오해
+  //비동기적 처리가 가능하게 바꿔주는 마법의 문법이 아님
+  //그냥 콜백함수 디자인의 대체품이다. 
+  // Promise가 적용된 곳들 : fetch() 이걸쓰고 난 자리에 Promise()를 return함. 
+  //그래서 fetch 뒤에 then, catch를 쓸수있는 것임
+
+
+
+
+  </script>
+</body>
+</html>
