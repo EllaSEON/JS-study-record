@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코딩앙마 async await</title>
+</head>
+<body>
+  <script>
+    //1번째 예제
+    async function getName() {
+      return "Mike"
+    }
+
+    console.log(getName()) //Promise
+    
+    getName().then(name=>{
+      console.log(name)
+    })
+
+    //2번째 예제
+    async function 이름() {
+      return Promise.resolve("Tom")
+    }
+    
+    이름().then(name=>{
+      console.log(name)
+    })
+
+    //3번째예제
+    async function 이름부르기(){
+      throw new Error("에러")
+    }
+
+    이름부르기().catch((err)=>{
+      console.log(err)
+    })
+
+    //await 키워드(async 함수에서만 사용 가능)
+    //await 오른쪽에는 promise가 가고 promise가 차례가 될때까지 기다린다.
+    async function showName(){
+      const result = await getName('마이크');
+      console.log(result)
+    }
+    showName();
+
+
+
+
+
+  </script>
+</body>
+</html>
