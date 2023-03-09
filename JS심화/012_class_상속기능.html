@@ -1,73 +1,69 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>class 상속기능, constructor 만드는 신문법</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>class 상속기능, constructor 만드는 신문법</title>
-</head>
+  <body>
+    <script>
+      //객체지향문법 쓰는 이유는 object를 여러개 만들어쓰기위해서
+      //class
 
-<body>
-  <script>
-    //객체지향문법 쓰는 이유는 object를 여러개 만들어쓰기위해서
-    //class
+      //함수 넣는 방법은 2가지다
+      //1) 자식 object에 직접 함수를 갖게 하고 싶으면 constructor 안에 함수 기재
+      //2) 부모의 prototype에만 만들어놓고 싶으면 constructor 밖에 함수 기재
+      //그러면 모든 자식들이 공통적으로 쓸수있는 내장함수같은걸 만들수있음.기능수정이있을 때 관리도 편하다
 
-    //함수 넣는 방법은 2가지다 
-    //1) 자식 object에 직접 함수를 갖게 하고 싶으면 constructor 안에 함수 기재
-    //2) 부모의 prototype에만 만들어놓고 싶으면 constructor 밖에 함수 기재
-    //그러면 모든 자식들이 공통적으로 쓸수있는 내장함수같은걸 만들수있음.기능수정이있을 때 관리도 편하다
+      //1) constructor 안에 넣는것
+      //자식의 object 값 안에 함수 들어감. 부모 prototype에도 추가됨
 
-
-
-
-
-    //1) constructor 안에 넣는것
-    //자식의 object 값 안에 함수 들어감. 부모 prototype에도 추가됨
-
-    class 부모{
-      constructor(이름){
-        this.name = 이름;
-        this.sayHi = function(){
-          console.log('안뇽')
+      class 부모 {
+        constructor(이름) {
+          this.name = 이름;
+          this.sayHi = function () {
+            console.log("안뇽");
+          };
         }
       }
-    }
 
-    var 자식 = new 부모('kim');
-    자식.sayHi();
-    console.log(자식);
-    console.log(자식.__proto__) //내가 물려받고 있는 prototype이 출력됨
-    console.log(Object.getPrototypeOf(자식))//부모의 prototype출력.__proto__랑 똑같은 의미
-    
-    console.log(자식.__proto__ === 부모.prototype)
-    console.log('--------')
+      var 자식 = new 부모("kim");
+      자식.sayHi();
+      console.log(자식);
+      console.log(자식.__proto__); //내가 물려받고 있는 prototype이 출력됨
+      console.log(Object.getPrototypeOf(자식)); //부모의 prototype출력.__proto__랑 똑같은 의미
 
-    //2) constructor 밖에 넣는것
-    //밖에 넣으면 자식 object 값에 추가 안된다(상속은 가능)
-    //즉, 부모.prototype에 추가되는 함수임
+      console.log(자식.__proto__ === 부모.prototype);
+      console.log("--------");
 
-    class Parents{
-      constructor(){
-        this.name = 'kim';
+      //2) constructor 밖에 넣는것
+      //밖에 넣으면 자식 object 값에 추가 안된다(상속은 가능)
+      //즉, 부모.prototype에 추가되는 함수임
+      // 부모 유전자에 만들면 모든 자식들이 공통적으로 쓸 수 있음. 기능 수정이 필요할때 관리도 편함
+
+      class Parents {
+        constructor() {
+          this.name = "kim";
+        }
+        sayHi() {
+          console.log("안뇽");
+        }
+        sayHello() {
+          console.log("하이");
+        }
       }
-      sayHi(){
-        console.log('안뇽')
-      }
-      sayHello(){
-        console.log('하이')
-      }
-    }
 
-    var child = new Parents();
-    console.log(Parents.prototype) //sayHi()함수는 부모의 프로토타입에 추가됨
-    child.sayHi(); //부모의 프로토타입에 추가되니까 상속도 가능
-    console.log(child) //그런데. sayHi()함수가 값에는 추가 안됨
+      var child = new Parents();
+      console.log(Parents.prototype); //sayHi()함수는 부모의 프로토타입에 추가됨
+      child.sayHi(); //부모의 프로토타입에 추가되니까 상속도 가능
+      console.log(child); //그런데. sayHi()함수가 값에는 추가 안됨
 
-    Parents.prototype.sayBye=function(){console.log('잘가')} //prototype에 함수 추가해서도 이용가능
-    console.log(Parents.prototype)
-
-  </script>
-</body>
-
+      Parents.prototype.sayBye = function () {
+        console.log("잘가");
+      }; //prototype에 함수 추가해서도 이용가능
+      console.log(Parents.prototype);
+    </script>
+  </body>
 </html>

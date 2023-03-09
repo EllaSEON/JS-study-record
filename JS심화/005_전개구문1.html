@@ -1,82 +1,76 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spread</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>spread</title>
-</head>
+  <body>
+    <script>
+      //... spread operator
+      // 내용물을 빼고 싶을 때 쓰면 됨.
+      // array 에 쓰면 대괄호를 다 제거하는 문법
+      // 문자열에 쓰면 한글자씩 다 펼쳐줌
+      //object  중괄호 다 제거하는 문법
 
-<body>
-  <script>
-    //... spread operator 
-    // 내용물을 빼고 싶을 때 쓰면 됨. 
-    // array 에 쓰면 대괄호를 다 제거하는 문법
-    // 문자열에 쓰면 한글자씩 다 펼쳐줌
-    //object  중괄호 다 제거하는 문법
+      var 어레이 = ["hello", "world"];
+      console.log(어레이);
+      console.log(...어레이);
+      console.log("hello", "world");
 
-    var 어레이 = ['hello','world'];
-    console.log(어레이);
-    console.log(...어레이);
-    console.log('hello','world')
+      var 문자 = "hello";
+      console.log(문자[1]); //'e'
+      console.log(문자); //'hello'
+      console.log(...문자); //'h', 'e', 'l', 'l,' 'o'
+      console.log("h", "e", "l", "l", "o");
 
-    var 문자 = 'hello';
-    console.log(문자[1]) //문자도 array처럼 인덱싱이 가능하다
-    console.log(문자);
-    console.log(...문자); //문자에 붙이면 펼쳐준다
-    console.log('h','e','l','l','o');
+      //spread operater 활용 방법
+      //어레이를 합치거나, 복사할때 유용하게 쓸수있음
 
-    //spread operater 활용 방법
-    //어레이를 합치거나, 복사할때 유용하게 쓸수있음
+      var a = [1, 2, 3];
+      var b = [4, 5];
 
-    var a = [1,2,3];
-    var b = [4,5];
+      var c = [...a]; //a의 배열 대괄호 다 제거해서 펼쳐줘
+      var d = [...a, ...b];
+      console.log(c);
+      console.log(d);
 
-    var c = [...a]; //a의 배열 대괄호 다 제거해서 펼쳐줘
-    var d = [...a,...b];
-    console.log(c);
-    console.log(d);
+      console.log("--------");
+      // Deep copy(독립적인 자료를 만들고 싶을떄) 할때 유용하다
 
-    console.log('--------')
-    // Deep copy(독립적인 자료를 만들고 싶을떄) 할때 유용하다
+      var a1 = [1, 2, 3];
+      var b1 = a1; //reference data type(Array,Object) 는 등호로 복사하면 값을 공유한다. 즉, a1을 바꾸면 b1도 바뀌고 b1을 바꾸면 a1도 바뀐다
+      console.log(a1);
+      console.log(b1);
 
-    var a1 = [1,2,3];
-    var b1 = a1; //reference data type(Array,Object) 는 등호로 복사하면 값을 공유한다. 즉, a1을 바꾸면 b1도 바뀌고 b1을 바꾸면 a1도 바뀐다
-    console.log(a1);
-    console.log(b1);
+      a1[3] = 4;
+      console.log(a1);
+      console.log(b1); //b1 에는 직접 값을 수정한 적이 없는데 4가 추가된다.
+      //그냥 등호로 값을 복사하면 값을 공유함
 
-    a1[3]=4;
-    console.log(a1);
-    console.log(b1); //b1 에는 직접 값을 수정한 적이 없는데 4가 추가된다.
-    //그냥 등호로 값을 복사하면 값을 공유함
+      //각각 독립적인 값을 가지도록 복사하려면 Spread operator를 이용하자
+      var f = [1, 2, 3];
+      var e = [...f];
+      f[3] = 4;
+      console.log(f);
+      console.log(e);
 
-    
-    //각각 독립적인 값을 가지도록 복사하려면 Spread operator를 이용하자
-    var f =[1,2,3];
-    var e = [...f];
-    f[3]=4;
-    console.log(f);
-    console.log(e);
+      console.log("--------");
 
-    console.log('--------')
-    
-    
-    // object 합치기에도 유용함, 중괄호 벗기기에도 유용
-    var o1 = {a:1,b:2};
-    var o2 = {...o1,c:3};
-    console.log(o2);
+      // object 합치기에도 유용함, 중괄호 벗기기에도 유용
+      var o1 = { a: 1, b: 2 };
+      var o2 = { ...o1, c: 3 };
+      console.log(o2);
 
-    //object는 값 카피하다가 값 중복이 일어날수있음.
-    //그럴때는 어떻게? 가장 뒤에 온 값을 적용한다
-    var object1 = {a:1,b:2};
-    var object2 = {a:2,...object1};
-    var object3 = {...object1,a:2};
-    console.log(object2)
-    console.log(object3)
-
-
-  </script>
-</body>
-
+      //object는 값 카피하다가 값 중복이 일어날수있음.
+      //그럴때는 어떻게? 가장 뒤에 온 값을 적용한다
+      var object1 = { a: 1, b: 2 };
+      var object2 = { a: 2, ...object1 };
+      var object3 = { ...object1, a: 2 };
+      console.log(object2);
+      console.log(object3);
+    </script>
+  </body>
 </html>

@@ -1,44 +1,38 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>prototype</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
       //1) 코딩애플  https://www.youtube.com/watch?v=wUgmzvExL_E&t=308s
       // prototype은 상속기능을 구현하는 장치
 
-      function 기계(){
-        this.q ='strike';
-        this.w = 'snnowball';
+      function 기계() {
+        this.q = "strike";
+        this.w = "snnowball";
       } //여기에 쓰면 자식이 {q:'strike'} 직접가짐
 
-      기계.prototype.name='kim' //prototype에 쓰면 부모만 {name:'kim'}을 가짐
+      기계.prototype.name = "kim"; //prototype에 쓰면 부모만 {name:'kim'}을 가짐
 
-      var nunu = new 기계()
+      var nunu = new 기계();
 
-      nunu.name //nunu가 name을 가지고 있지 않으면, nunu의 부모유전자에게 뒤져본다. 거기 name이 있으면 출력한다. 만약 부모에도 없으면 부모의 부모유전자까지 물어본다. =>prototype chain
+      nunu.name; //nunu가 name을 가지고 있지 않으면, nunu의 부모유전자에게 뒤져본다. 거기 name이 있으면 출력한다. 만약 부모에도 없으면 부모의 부모유전자까지 물어본다. =>prototype chain
 
-
-      //어레이에 sort() 메서드를 쓸수있는 이유는 부모유전자(prototype)에 기록되어있으니까
-      var 어레이 = [4,2,1]; // 인간의 방식
-      var 어레이 = new Array(4,2,1) ; //컴퓨터 방식
+      //어레이에 sort() 메서드를 쓸 수 있는 이유는 부모유전자(prototype)에 기록되어있으니까
+      var 어레이 = [4, 2, 1]; // 인간의 방식
+      var 어레이 = new Array(4, 2, 1); //컴퓨터 방식
       어레이.sort();
 
       //Array.prototype 추가하는 문법 . 모든 Array에서는 이 함수 갖다가 쓸수있음.
 
-      Array.prototype.내가만든함수 = function(){console.log('안뇽')}
-      var arr = [4,2,1];
-      
-      
-
-
-
-
-
+      Array.prototype.내가만든함수 = function () {
+        console.log("안뇽");
+      };
+      var arr = [4, 2, 1];
     </script>
-</body>
+  </body>
 </html>

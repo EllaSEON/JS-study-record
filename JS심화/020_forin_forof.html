@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이터러블</title>
+  </head>
+  <body>
+    <script>
+      var 오브젝트 = { name: "Kim", age: 30 };
+      Object.getOwnPropertyDescriptor(오브젝트, "name");
+      Object.getOwnPropertyDescriptor(오브젝트, "age");
+      // {value: 30, writable: true, enumerable: true, configurable: true}
+
+      console.log(오브젝트.name);
+      console.log(오브젝트["name"]);
+
+      console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+
+      // for in 특징 : 자료 갯수만큼 반복됨
+      // 1. for in : enumerable 이 true 인것만 반복해줌
+      //이걸 강제로 false로 만들면 for in 반복문이 거릅니다.
+      // enumerable : 셀 수 있는지 여부
+      for (var key값 in 오브젝트) {
+        console.log(오브젝트[key값]); //'kim',30
+      }
+
+      // 2. 부모의 prototype도 반복해줌
+
+      /*
+      반복문 용도
+      1. 코드 여러번 실행할 때
+      2. Array, Object에서 요소 하나하나씩 자료 꺼내쓸 때
+       */
+    </script>
+  </body>
+</html>
